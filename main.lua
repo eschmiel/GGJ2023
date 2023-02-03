@@ -3,16 +3,9 @@ function _init()
 end
 
 function _update()
-    selector:moveControls()
+    update_game()
 end
 
 function _draw()
-    cls()
-    map(0,0)
-    --drawGrid()
-    entity:draw()
-    selector:draw()
-    selectedPosition:draw()
-    logButtonPress()
-
+    draw_game()
 end
