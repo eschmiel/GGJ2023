@@ -4,8 +4,10 @@ entity.positionY = 0
 entity.sprite = 13
 
 function entity:draw()
-    x = self.positionX
-    y = self.positionY
-
-    spr(self.sprite, x, y)
+    if self.positionX and self.positionY then
+        xPixelCoordinate = convertPositionToPixelCoordinate(self.positionX)
+        yPixelCoordinate = convertPositionToPixelCoordinate(self.positionY)
+        
+        spr(self.sprite, xPixelCoordinate, yPixelCoordinate)
+    end
 end
