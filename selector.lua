@@ -3,26 +3,28 @@ selector.positionX = 0
 selector.positionY = 0
 
 function selector:draw()
-    x = self.positionX
-    y = self.positionY
+    xPixelCoordinateOrigin = convertPositionToPixelCoordinate(self.positionX)
+    yPixelCoordinateOrigin = convertPositionToPixelCoordinate(self.positionY)
 
-    rect(x, y, x+7, y+7, 4)
+    xPixelCoordinateEnd = xPixelCoordinateOrigin + 7
+    yPixelCoordinateEnd = yPixelCoordinateOrigin + 7
+    rect(xPixelCoordinateOrigin, yPixelCoordinateOrigin, xPixelCoordinateEnd, yPixelCoordinateEnd, colorEnum.brown)
 end
 
 function selector:moveControls()
     controls = controllerListener()
 
     if controls[1] then
-        self.positionX -= 8
+        self.positionX -= 1
     end
     if controls[2] then
-        self.positionX += 8
+        self.positionX += 1
     end
     if controls[3] then
-        self.positionY -= 8
+        self.positionY -= 1
     end
     if controls[4] then
-        self.positionY += 8
+        self.positionY += 1
     end
     if controls[5] then
         if not (selectedPosition.x and selectedPosition.y) then
