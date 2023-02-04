@@ -32,6 +32,7 @@ function make_huitz()
     new_unit.attack = 5
     new_unit.magic = 1
     new_unit.movement = 3
+    new_unit.spriteId = 45
 
     return new_unit
 
@@ -46,6 +47,7 @@ function make_xipe()
     new_unit.attack = 4
     new_unit.magic = 3
     new_unit.movement = 3
+    new_unit.spriteId = 192
 
     return new_unit
 end
@@ -59,6 +61,7 @@ function make_tez()
     new_unit.attack = 2
     new_unit.magic = 5
     new_unit.movement = 3
+    new_unit.spriteId = 8
 
     return new_unit
 
@@ -73,6 +76,7 @@ function make_quetz()
     new_unit.attack = 1
     new_unit.magic = 5
     new_unit.movement = 5
+    new_unit.spriteId = 41
 
     return new_unit
 

@@ -1,6 +1,14 @@
+function init_game()
+    player:generate_player_units(1, 1, 1, 1)
+end
+
 function draw_game()
+    init_game()
     cls()
     map(0,0)
+    --selector:checkMoveRange()
+    selector:hover_logic()
+    player:draw_units()
     entity:draw()
     selector:draw()
     selectedPosition:draw()

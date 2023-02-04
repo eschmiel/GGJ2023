@@ -44,8 +44,17 @@ function selector:moveControls()
     end
 end
 
-function selector:checkMoveRange() 
-    tiles = get_tiles_in_range(self.positionX, self.positionY, 3)
+function selector:hover_logic()
+    for unit in all(player.units) do
+        if self.positionX == unit.positionX and self.positionY == unit.positionY then
+            self:checkMoveRange(unit.movement)
+            break
+        end
+    end
+end
+
+function selector:checkMoveRange(range) 
+    tiles = get_tiles_in_range(self.positionX, self.positionY, range)
 
     foreach(tiles, drawSquareOnTile)
 end
