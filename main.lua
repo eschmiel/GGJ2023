@@ -1,5 +1,5 @@
 function _init()
-    palt(0)
+
 end
 
 function _update()
