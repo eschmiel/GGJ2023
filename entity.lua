@@ -1,7 +1,7 @@
 entity = {}
 entity.positionX = 0
 entity.positionY = 0
-entity.sprite = 13
+entity.sprite = 45
 
 function entity:draw()
   if self.positionX and self.positionY then

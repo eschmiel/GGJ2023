@@ -45,15 +45,8 @@ function selector:moveControls()
 end
 
 function selector:checkMoveRange() 
-    print("bingo", 8, 8)
     tiles = get_tiles_in_range(self.positionX, self.positionY, 3)
-   --print(#tiles, 20, 20)
-    index = 0
-    for tile in all(tiles) do
-        message = 'x: '..tile.x..', y: '..tile.y
-      --  print(message, 5, 5 + index)
-        index += 9
-    end
+
     foreach(tiles, drawSquareOnTile)
 end
 

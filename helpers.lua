@@ -56,10 +56,24 @@ colorEnum.greyPurple = 13
 colorEnum.pink = 14
 colorEnum.peach = 15
 
+loading_sprite_id = 71
+wall_sprites = {}
+for y = 0, 3 do
+    for x = 0, 9 do
+        add(wall_sprites, loading_sprite_id + x + (y * 16))
+    end
+end
+wall_sprites[0] =5
+--log_table(wall_sprites)
+
+bingoCheck ={}
 function get_tiles_in_range(origin_x, origin_y, range)
+checkedTileSprites = {}
+bingoCheck = {}
+
     checked_tiles = {}
     tiles_in_range = {}
-    distance_checked = 0
+    distance_checked = 1
 
     tiles_to_check = get_neighboring_tiles({x = origin_x, y = origin_y})
 
@@ -76,6 +90,8 @@ function get_tiles_in_range(origin_x, origin_y, range)
         tiles_to_check = new_tiles_to_check
        -- log_table_changes(new_tiles_to_check)
     end
+
+   -- log_table(bingoCheck)
 
     return tiles_in_range
 end
@@ -96,8 +112,11 @@ function check_tile(tile_coordinates, checked_tiles, tiles_in_range)
     add(checked_tiles, {x= tile_coordinates.x, y= tile_coordinates.y})
     
     --log_table_changes(checked_tiles)
-    if (not is_tile_navigable(tile_coordinates)) return
-print("bingo", 90,80)
+    if not is_tile_navigable(tile_coordinates) then
+        add(bingoCheck, "bingo")
+         return
+    end
+
     tiles_to_check = {}
 
     neighboring_tiles = get_neighboring_tiles(tile_coordinates)
@@ -112,11 +131,16 @@ print("bingo", 90,80)
 
     return tiles_to_check
 end
+checkedTileSprites = {}
 
 function is_tile_navigable(tile_coordinates)
     tile_sprite = mget(tile_coordinates.x, tile_coordinates.y)
 
-    if tile_sprite >= 65 and tile_sprite <= 70 then
+    --add(checkedTileSprites, tile_sprite)
+    --rectfill(40,15, 120, 50, colorEnum.white)
+    --print("tile sprite: "..tile_sprite, 50, 20, colorEnum.green)
+    log_table(wall_tiles)
+    if table_has_value(wall_sprites, tile_sprite) then
         return false
     end
 

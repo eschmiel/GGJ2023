@@ -27,3 +27,14 @@ function log_table_changes(table)
         index += 20
     end
 end
+
+function log_table(table)
+    index = 0
+    --print("YOOOOOOOOOO", 50,50, colorEnum.green)
+    for k, v in pairs(table) do
+            print("YOOOOOOOOOO", 50,50, colorEnum.green)
+        print(k..": "..v, 42, 20+index, colorEnum.red)
+
+        index += 8
+    end
+end
