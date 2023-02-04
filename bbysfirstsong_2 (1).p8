@@ -1,16 +1,7 @@
 pico-8 cartridge // http://www.pico-8.com
 version 39
 __lua__
-#include main.lua
-#include debugging_tools.lua
-#include entity.lua
-#include selector.lua
-#include selected_position.lua
-#include helpers.lua
-#include game_scene.lua
-#include map_reference.lua
-#include movement_system.lua
-
+_draw(
 __gfx__
 00000000dddddddccddddddd00000000000000000000000000000000000000007770770700070777077707770777077707070000000000000000000000000000
 00000000dddddcc00ccddddd00000000000000000000000000000000000000000700700770770707070707070707070707070000000000000000000000000000

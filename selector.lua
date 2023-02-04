@@ -43,3 +43,19 @@ function selector:moveControls()
         selectedPosition.y = nil
     end
 end
+
+function selector:checkMoveRange() 
+    tiles = get_tiles_in_range(self.positionX, self.positionY, 3)
+
+    foreach(tiles, drawSquareOnTile)
+end
+
+function drawSquareOnTile(tile)
+    xPixelCoordinateOrigin = convertPositionToPixelCoordinate(tile.x)
+    yPixelCoordinateOrigin = convertPositionToPixelCoordinate(tile.y)
+
+    xPixelCoordinateEnd = xPixelCoordinateOrigin + 7
+    yPixelCoordinateEnd = yPixelCoordinateOrigin + 7
+
+    rectfill(xPixelCoordinateOrigin, yPixelCoordinateOrigin, xPixelCoordinateEnd, yPixelCoordinateEnd, colorEnum.red)
+end
