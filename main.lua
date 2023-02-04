@@ -16,3 +16,14 @@ function _draw()
     logButtonPress()
 
 end
+
+function update_menu()
+    if(btnp(4)) then
+        _update = update_game
+    end
+end
+
+function draw_menu()
+    cls()
+    print("press the x button to start")
+end
