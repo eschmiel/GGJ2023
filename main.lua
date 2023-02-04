@@ -1,11 +1,18 @@
 function _init()
+    palt(0)
+    _update = update_menu
+    _draw = draw_menu
 
 end
 
-function _update()
-    update_game()
+function update_menu()
+    if(btnp(4)) then
+        _update = update_game
+        _draw = draw_game
+    end
 end
 
-function _draw()
-    draw_game()
+function draw_menu()
+    cls()
+    print("press the z button to start")
 end
