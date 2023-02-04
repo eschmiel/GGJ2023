@@ -8,7 +8,7 @@ function selector:draw()
 
     xPixelCoordinateEnd = xPixelCoordinateOrigin + 7
     yPixelCoordinateEnd = yPixelCoordinateOrigin + 7
-    rect(xPixelCoordinateOrigin, yPixelCoordinateOrigin, xPixelCoordinateEnd, yPixelCoordinateEnd, colorEnum.brown)
+    rect(xPixelCoordinateOrigin, yPixelCoordinateOrigin, xPixelCoordinateEnd, yPixelCoordinateEnd, 4)
 end
 
 function selector:moveControls()

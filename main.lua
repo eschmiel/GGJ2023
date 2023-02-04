@@ -2,6 +2,7 @@ function _init()
     palt(0)
     _update = update_menu
     _draw = draw_menu
+
 end
 
 function update_menu()
