@@ -38,6 +38,12 @@ function convertPositionToPixelCoordinate(position)
     return pixelCoordinate
 end
 
+function convertPositionToTextPixelCoordinate(position) 
+    pixelCoordinate = position * 6
+
+    return pixelCoordinate
+end
+
 colorEnum = {}
 colorEnum.black = 0
 colorEnum.navy = 1

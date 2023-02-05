@@ -10,6 +10,7 @@ __lua__
 #include map_reference.lua
 #include movement_system.lua
 #include player.lua
+#include dialogue.lua
 #include enemy.lua
 #include level.lua
 #include game_scene.lua

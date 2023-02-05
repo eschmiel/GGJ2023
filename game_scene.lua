@@ -27,8 +27,7 @@ end
 pointer = nil
 
 function update_game()
-    
-    if state == "select" then
+      if state == "select" then
         selector:moveControls()
         selector:hover_logic()
     elseif state == "menu" then
