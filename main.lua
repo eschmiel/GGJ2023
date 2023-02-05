@@ -1,7 +1,7 @@
 function _init()
     palt(0)
-    _update = update_menu
-    _draw = draw_menu
+    _update = update_testing
+    _draw = draw_testing
 
 end
 
@@ -31,12 +31,5 @@ end
 
 function draw_testing()
     cls()
-    print(unit1.type)
-    print(unit1.hp)
-    print(unit1.attack)
-
-
-    print(unit2.type)
-    print(unit2.hp)
-    print(unit2.attack)
+    draw_snake_box(0, 0, 10, 10)
 end
