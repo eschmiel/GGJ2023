@@ -24,11 +24,18 @@ function unit_constructor()
     unit.magic = 2
     unit.movement = 3
     unit.sprite = 13
+    unit.oldPositionX = 0
+    unit.oldPositionY = 0
 
     function unit:move(coordinate_object)
+        self.oldPositionX = self.positionX
+        self.oldPositionY = self.positionY 
+        
         self.positionX = coordinate_object.x
         self.positionY = coordinate_object.y
 
+        state = "menu"
+        pointer = 1
        -- self:open_action_menu()
     end
 
