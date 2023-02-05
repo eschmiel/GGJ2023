@@ -26,6 +26,7 @@ function unit_constructor()
     unit.sprite = 13
     unit.oldPositionX = 0
     unit.oldPositionY = 0
+    unit.active = true
 
     function unit:move(coordinate_object)
         self.oldPositionX = self.positionX
