@@ -1,5 +1,6 @@
 function init_game()
     player:generate_player_units(1, 1, 1, 1)
+    state = "select"
 end
 
 function draw_game()
@@ -11,11 +12,22 @@ function draw_game()
     entity:draw()
     selector:draw()
     selectedPosition:draw()
+
+    if state == "menu" then
+    --draw the menu itself
+    end
 end
 
 function update_game()
-    selector:moveControls()
-    selector:hover_logic()
+    
+    if state == "select" then
+        selector:moveControls()
+        selector:hover_logic
+    elseif state == "menu"
+        --switch over to menu controller
+        pointer = 1
+    end
+    
 end
 
 function draw_snake_box(x, y, width, height)
@@ -64,4 +76,48 @@ function draw_snake_box(x, y, width, height)
     spr(234, x_pixel+width_pixel, y_pixel+height_pixel)
     spr(232, x_pixel, y_pixel + height_pixel)
     spr(216, x_pixel,y_pixel+8)
+end
+
+function make_menu(unit1, unit2)
+    
+    --have an array of choices (str)
+    choices = {"attack", "magic", "heal", "cancel"}
+
+    --build a box for the menu itself
+    rectfill(selector.positionX*8 + 8, selector.positionY*8, 16, 32, colorEnum.white)
+
+
+    i = 1
+    --print out the array inside the box
+    for c in all(choices) do
+        if i == pointer then
+            print(c, selector.positionX*8 + 8, (selector.positionY + i - 1)*8, colorEnum.red)
+
+        else
+            print(c, selector.positionX*8 + 8, (selector.positionY + i - 1)*8, colorEnum.black)
+        end
+
+    --print the current choice with a different color (red)
+
+end
+
+function menu_controls()
+    --moving up/down will make move what is printed in a different color to indicate choice
+    if controls[3] then
+        if pointer > 1 then
+            pointer -= 1
+        end
+    elseif controls[4] then
+        if pointer < 4 then
+            pointer += 1
+    elseif controls[5] then
+        --play action
+    elseif controls[6] then
+        state = "select"
+    end
+            
+    
+    --pointer inc/dec
+    -- hitting z will activate function at choice[i] if i = pointer
+    -- hitting x will cancel/change the state to select
 end
