@@ -1,5 +1,9 @@
 function init_game()
+    enemyData = {}
+    
+
     player:generate_player_units(1, 1, 1, 1)
+   -- enemies:generate_enemies()
 end
 
 function draw_game()
@@ -8,6 +12,7 @@ function draw_game()
     --selector:checkMoveRange()
     selector:draw_tiles_in_range()
     player:draw_units()
+    enemy:draw_units()
     entity:draw()
     selector:draw()
     selectedPosition:draw()

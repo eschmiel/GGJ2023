@@ -37,10 +37,13 @@ end
 
 
 
-function make_huitz()
+function make_huitz(positionX, positionY)
     new_unit = unit_constructor()
 
-    new_unit.type = "HUITZ"
+    new_unit.positionX = positionX
+    new_unit.positionY = positionY
+
+    new_unit.type = "huitz"
     new_unit.maxHP = 20
     new_unit.hp = 20
     new_unit.attack = 5
@@ -54,10 +57,13 @@ function make_huitz()
 
 end
 
-function make_xipe()
+function make_xipe(positionX, positionY)
     new_unit = unit_constructor()
 
-    new_unit.type = "XIPE"
+    new_unit.positionX = positionX
+    new_unit.positionY = positionY
+
+    new_unit.type = "xipe"
     new_unit.maxHP = 16
     new_unit.hp = 16
     new_unit.attack = 4
@@ -65,15 +71,18 @@ function make_xipe()
     new_unit.magic = 3
     new_unit.resistance = 3
     new_unit.movement = 3
-    new_unit.spriteId = 192
+    new_unit.spriteId = 208
 
     return new_unit
 end
 
-function make_tez()
+function make_tez(positionX, positionY)
     new_unit = unit_constructor()
 
-    new_unit.type = "TEZ"
+    new_unit.positionX = positionX
+    new_unit.positionY = positionY
+
+    new_unit.type = "tez"
     new_unit.maxHP = 16
     new_unit.hp = 16
     new_unit.attack = 2
@@ -87,8 +96,11 @@ function make_tez()
 
 end
 
-function make_quetz()
+function make_quetz(positionX, positionY)
     new_unit = unit_constructor()
+
+    new_unit.positionX = positionX
+    new_unit.positionY = positionY
 
     new_unit.type = "quetz"
     new_unit.maxHP = 12

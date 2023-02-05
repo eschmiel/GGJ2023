@@ -30,6 +30,8 @@ function player:draw_units()
         xPixelCoordinate = convertPositionToPixelCoordinate(unit.positionX)
         yPixelCoordinate = convertPositionToPixelCoordinate(unit.positionY)
 
+        palt(colorEnum.blue, true)
         spr(unit.spriteId, xPixelCoordinate, yPixelCoordinate)
+        palt(colorEnum.blue, false)
     end
 end

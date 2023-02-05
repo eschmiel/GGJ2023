@@ -1,5 +1,5 @@
 function _init()
-    palt(0)
+    palt(colorEnum.black, false)
     _update = update_menu
     _draw = draw_menu
 
