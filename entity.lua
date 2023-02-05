@@ -27,10 +27,12 @@ function make_huitz()
     new_unit = {}
 
     new_unit.type = "HUITZ"
-    new_unit.maxHP = 40
-    new_unit.hp = 40
+    new_unit.maxHP = 20
+    new_unit.hp = 20
     new_unit.attack = 5
+    new_unit.defence = 2
     new_unit.magic = 1
+    new_unit.resistance = 1
     new_unit.movement = 3
     new_unit.spriteId = 45
 
@@ -42,10 +44,12 @@ function make_xipe()
     new_unit = {}
 
     new_unit.type = "XIPE"
-    new_unit.maxHP = 30
-    new_unit.hp = 30
+    new_unit.maxHP = 16
+    new_unit.hp = 16
     new_unit.attack = 4
+    new_unit.defence = 3
     new_unit.magic = 3
+    new_unit.resistance = 3
     new_unit.movement = 3
     new_unit.spriteId = 192
 
@@ -56,10 +60,12 @@ function make_tez()
     new_unit = {}
 
     new_unit.type = "TEZ"
-    new_unit.maxHP = 25
-    new_unit.hp = 25
+    new_unit.maxHP = 16
+    new_unit.hp = 16
     new_unit.attack = 2
+    new_unit.defence = 2
     new_unit.magic = 5
+    new_unit.resistance = 3
     new_unit.movement = 3
     new_unit.spriteId = 8
 
@@ -70,11 +76,13 @@ end
 function make_quetz()
     new_unit = {}
 
-    new_unit.type = "QUETZ"
-    new_unit.maxHP = 30
-    new_unit.hp = 30
+    new_unit.type = "quetz"
+    new_unit.maxHP = 12
+    new_unit.hp = 12
     new_unit.attack = 1
+    new_unit.defence = 2
     new_unit.magic = 5
+    new_unit.resistance = 3
     new_unit.movement = 5
     new_unit.spriteId = 41
 
@@ -103,4 +111,79 @@ function hp_clamp(hp, min, max)
     end
 
     return hp
+end
+
+function show_stats(unit, x, y)
+
+    rectfill(x, y, x+40, y+40, colorEnum.black)
+    draw_snake_box(x, y, 5, 5)
+
+    i = x + 1
+    j = y + 1
+
+    --showing the type/name
+    print(unit.type, i*8, j*8, colorEnum.white)
+    j += 1
+
+    --showing health in 4s
+
+    
+
+    print(unit.hp.."/"..unit.maxHP, i*8, j*8)
+
+    i = x + 4
+
+    spr(211, i*8 - 2, j*8 - 2)
+
+    j += 1
+
+
+    i = x + 1
+
+    --showing ATK
+    atk = unit.attack
+    spr(224, i*8 - 2, j*8 - 1)
+
+    i += 1
+
+    print(unit.attack, i*8, j*8)
+
+    i += 1
+
+    
+    --showing MAG
+    mag = unit.magic
+    spr(226, i*8 - 2, j*8 - 1)
+
+    i += 1
+
+    print(unit.magic, i*8, j*8)
+
+    j += 1
+    i = x + 1
+
+
+    --showing DEF
+    def = unit.defence
+
+    spr(225, i*8 - 2, j*8)
+
+    i += 1
+
+    print(unit.defence, i*8, j*8 + 1)
+
+    i += 1
+    
+
+    
+
+    --showing MAG
+    res = unit.resistance
+
+    spr(227, i*8 - 2, j*8)
+
+    i += 1
+
+    print(unit.resistance, i*8, j*8 + 1)
+
 end
