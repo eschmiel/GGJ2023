@@ -23,13 +23,10 @@ end
 function update_testing()
     unit1 = make_quetz()
     unit2 = make_xipe()
-
-    take_damage(unit2, 10)
-
-    take_heal(unit2, unit1.magic)
 end
 
 function draw_testing()
     cls()
-    draw_snake_box(0, 0, 10, 10)
+    rect(0, 0, 127, 127)
+    show_stats(unit1, 0, 0)
 end
