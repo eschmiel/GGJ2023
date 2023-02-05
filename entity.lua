@@ -140,8 +140,9 @@ function hp_clamp(hp, min, max)
 end
 
 function show_stats(unit, x, y)
-
-    rectfill(x, y, x+40, y+40, colorEnum.black)
+convertX = convertPositionToPixelCoordinate(x)
+convertY = convertPositionToPixelCoordinate(y)
+    rectfill(convertX, convertY, convertX+40, convertY+40, colorEnum.black)
     draw_snake_box(x, y, 5, 5)
 
     i = x + 1
