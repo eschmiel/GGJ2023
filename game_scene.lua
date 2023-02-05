@@ -1,14 +1,19 @@
 function init_game()
+    enemyData = {}
+    
+
     player:generate_player_units(1, 1, 1, 1)
+  enemies:generate_enemies()
     state = "select"
 end
 
 function draw_game()
     cls()
-    map(0,0)
+    map(96,0)
     --selector:checkMoveRange()
     selector:draw_tiles_in_range()
     player:draw_units()
+    enemy:draw_units()
     entity:draw()
     selector:draw()
     selectedPosition:draw()
