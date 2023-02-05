@@ -43,8 +43,7 @@ function selector:moveControls()
         if not self.selected then
             self:select()
         elseif coordinate_table_contains_coordinates(tiles_in_range, {x = self.positionX, y = self.positionY}) then
-            player.units[self.index].positionX = self.positionX
-            player.units[self.index].positionY = self.positionY
+            self.selected:move({x = self.positionX, y = self.positionY})
             self.selected = nil
             self.tiles_in_range = {}
         end

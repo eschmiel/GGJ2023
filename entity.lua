@@ -12,19 +12,33 @@ function entity:draw()
     end
 end
 
-unit = {}
-unit.type = ""
-unit.positionX = 0
-unit.positionY = 0
-unit.maxHP = 20
-unit.hp = 20
-unit.attack = 4
-unit.magic = 2
-unit.movement = 3
-unit.sprite = 13
+function unit_constructor()
+
+    unit = {}
+    unit.type = ""
+    unit.positionX = 0
+    unit.positionY = 0
+    unit.maxHP = 20
+    unit.hp = 20
+    unit.attack = 4
+    unit.magic = 2
+    unit.movement = 3
+    unit.sprite = 13
+
+    function unit:move(coordinate_object)
+        self.positionX = coordinate_object.x
+        self.positionY = coordinate_object.y
+
+       -- self:open_action_menu()
+    end
+
+    return unit
+end
+
+
 
 function make_huitz()
-    new_unit = {}
+    new_unit = unit_constructor()
 
     new_unit.type = "HUITZ"
     new_unit.maxHP = 20
@@ -41,7 +55,7 @@ function make_huitz()
 end
 
 function make_xipe()
-    new_unit = {}
+    new_unit = unit_constructor()
 
     new_unit.type = "XIPE"
     new_unit.maxHP = 16
@@ -57,7 +71,7 @@ function make_xipe()
 end
 
 function make_tez()
-    new_unit = {}
+    new_unit = unit_constructor()
 
     new_unit.type = "TEZ"
     new_unit.maxHP = 16
@@ -74,7 +88,7 @@ function make_tez()
 end
 
 function make_quetz()
-    new_unit = {}
+    new_unit = unit_constructor()
 
     new_unit.type = "quetz"
     new_unit.maxHP = 12
