@@ -16,6 +16,7 @@ end
 function update_game()
     selector:moveControls()
     selector:hover_logic()
+end
 
 function draw_snake_box(x, y, width, height)
 
