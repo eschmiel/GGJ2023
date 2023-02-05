@@ -3,11 +3,10 @@ function init_game()
 end
 
 function draw_game()
-    init_game()
     cls()
     map(0,0)
     --selector:checkMoveRange()
-    selector:hover_logic()
+    selector:draw_tiles_in_range()
     player:draw_units()
     entity:draw()
     selector:draw()
@@ -16,7 +15,7 @@ end
 
 function update_game()
     selector:moveControls()
-end
+    selector:hover_logic()
 
 function draw_snake_box(x, y, width, height)
 
@@ -64,8 +63,4 @@ function draw_snake_box(x, y, width, height)
     spr(234, x_pixel+width_pixel, y_pixel+height_pixel)
     spr(232, x_pixel, y_pixel + height_pixel)
     spr(216, x_pixel,y_pixel+8)
-
-    
-
-
 end
