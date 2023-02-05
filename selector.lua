@@ -55,7 +55,6 @@ function selector:moveControls()
             self:select()
         elseif coordinate_table_contains_coordinates(tiles_in_range, {x = self.positionX, y = self.positionY}) then
             self.selected:move({x = self.positionX, y = self.positionY})
-            self.selected = nil
             self.tiles_in_range = {}
         end
 
@@ -84,7 +83,7 @@ function selector:hover_logic()
     self.hover_target = nil
     if not self.selected then
         for unit in all(player.units) do
-            if self.positionX == unit.positionX and self.positionY == unit.positionY then
+            if self.positionX == unit.positionX and self.positionY == unit.positionY and unit.active then
                 self.selectable = true
                 tiles_in_range = get_tiles_in_range(self.positionX, self.positionY, unit.movement)
                 self.hover_target = unit
