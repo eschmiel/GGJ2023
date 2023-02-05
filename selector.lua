@@ -13,6 +13,17 @@ function selector:draw()
     if self.selected then
         self:draw_rect({x=self.selected.positionX, y=self.selected.positionY}, colorEnum.yellow)
     end
+
+    if self.hover_target then
+        statbox_x = 0
+        statbox_y = 0
+
+        if self.hover_target.positionX < 6 and self.hover_target.positionY < 6 then
+            statbox_x = 10
+            stabox_x = 10
+        end
+         show_stats(self.hover_target, statbox_x, statbox_y)
+    end
 end
 
 function selector:draw_rect(coordinate_object, color)
@@ -43,9 +54,7 @@ function selector:moveControls()
         if not self.selected then
             self:select()
         elseif coordinate_table_contains_coordinates(tiles_in_range, {x = self.positionX, y = self.positionY}) then
-            player.units[self.index].positionX = self.positionX
-            player.units[self.index].positionY = self.positionY
-            self.selected = nil
+            self.selected:move({x = self.positionX, y = self.positionY})
             self.tiles_in_range = {}
         end
 
@@ -71,14 +80,23 @@ end
 
 function selector:hover_logic()
     self.selectable = false
+    self.hover_target = nil
     if not self.selected then
         for unit in all(player.units) do
-            if self.positionX == unit.positionX and self.positionY == unit.positionY then
+            if self.positionX == unit.positionX and self.positionY == unit.positionY and unit.active then
                 self.selectable = true
                 tiles_in_range = get_tiles_in_range(self.positionX, self.positionY, unit.movement)
+                self.hover_target = unit
                 break
             end
             tiles_in_range = {}
+        end
+    end
+    for unit in all(enemy.units) do
+        if self.positionX == unit.positionX and self.positionY == unit.positionY then
+            self.selectable = true
+            self.hover_target = unit
+            break
         end
     end
 end

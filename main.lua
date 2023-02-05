@@ -1,5 +1,7 @@
 function _init()
-    palt(0)
+
+    palt(colorEnum.black, false)
+
     _update = update_menu
     _draw = draw_menu
 
@@ -17,6 +19,7 @@ function update_menu()
     _draw = draw_game
     end
 end
+
 
 function draw_menu()
     cls()
@@ -49,13 +52,13 @@ end
 function update_testing()
     unit1 = make_quetz()
     unit2 = make_xipe()
-
-    take_damage(unit2, 10)
-
-    take_heal(unit2, unit1.magic)
 end
 
 function draw_testing()
     cls()
+
     dialogue("Carter", "")
+    rect(0, 0, 127, 127)
+    show_stats(unit1, 0, 0)
+
 end
