@@ -7,6 +7,7 @@ end
 
 function update_menu()
     if(btnp(4)) then
+        init_game()
         _update = update_game
         _draw = draw_game
     end

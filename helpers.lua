@@ -82,3 +82,10 @@ function same_coordinates(coordinate_object_1, coordinate_object_2)
     end
     return false
 end
+
+function coordinate_table_contains_coordinates(coordinate_table, coordinate_object)
+    for table_object in all(coordinate_table) do
+        if (same_coordinates(coordinate_object, table_object)) return true
+    end
+    return false
+end

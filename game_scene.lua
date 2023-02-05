@@ -3,11 +3,10 @@ function init_game()
 end
 
 function draw_game()
-    init_game()
     cls()
     map(0,0)
     --selector:checkMoveRange()
-    selector:hover_logic()
+    selector:draw_tiles_in_range()
     player:draw_units()
     entity:draw()
     selector:draw()
@@ -16,4 +15,5 @@ end
 
 function update_game()
     selector:moveControls()
+    selector:hover_logic()
 end
