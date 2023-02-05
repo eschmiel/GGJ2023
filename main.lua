@@ -13,6 +13,7 @@ function update_menu()
     end
 end
 
+
 function draw_menu()
     cls()
     print("press the z button to start")
