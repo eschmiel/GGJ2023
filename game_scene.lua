@@ -1,9 +1,9 @@
 function init_game()
     enemyData = {}
-    
+    music(0)
 
     player:generate_player_units(1, 1, 1, 1)
-  enemies:generate_enemies()
+    --enemies:generate_enemies()
     state = "select"
 end
 

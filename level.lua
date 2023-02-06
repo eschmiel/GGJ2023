@@ -14,7 +14,7 @@ levels[1].startingEnemyData[1] = {
 levels[1].startingEnemyData[2] = {
     type = "huitz",
     positionX = 11,
-    positionY = 4
+    positionY = 3
 }
 
 levels[1].startingEnemyData[3] = {
