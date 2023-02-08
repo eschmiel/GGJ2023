@@ -106,36 +106,11 @@ colorEnum.greyPurple = 13
 colorEnum.pink = 14
 colorEnum.peach = 15
 
-function concatenate_tables(table, table_to_add)
-    for value in all(table_to_add) do
-        add(table, value)
-    end
-end
+function distance_between_coordinates(coordinate_object_1, coordinate_object_2)
+    difference_1 = abs(coordinate_object_1.x - coordinate_object_2.x)
+    difference_2 = abs(coordinate_object_1.y - coordinate_object_2.y)
 
-function table_has_value(table, check_value) 
-    for key, value in pairs(table) do
-        if (value == check_value) return true
-    end
-    return false
-end
+    distance = difference_1 + difference_2
 
-function table_has_key(table, check_key)
-    for key, value in pairs(table) do
-        if (key == check_key) return true
-    end
-    return false
-end
-
-function same_coordinates(coordinate_object_1, coordinate_object_2)
-    if coordinate_object_1.x == coordinate_object_2.x and coordinate_object_1.y == coordinate_object_2.y then
-        return true
-    end
-    return false
-end
-
-function coordinate_table_contains_coordinates(coordinate_table, coordinate_object)
-    for table_object in all(coordinate_table) do
-        if (same_coordinates(coordinate_object, table_object)) return true
-    end
-    return false
+    return distance
 end

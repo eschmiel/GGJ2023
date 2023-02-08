@@ -28,16 +28,27 @@ function unit_constructor()
     unit.oldPositionY = 0
     unit.active = true
 
-    function unit:move(coordinate_object)
+    function unit:move(coordinate_object, friendly)
         self.oldPositionX = self.positionX
         self.oldPositionY = self.positionY 
         
         self.positionX = coordinate_object.x
         self.positionY = coordinate_object.y
 
-        state = "menu"
-        pointer = 1
-       -- self:open_action_menu()
+        if friendly then
+            state = "menu"
+            pointer = 1
+           -- self:open_action_menu()
+        end
+    end
+
+    function unit:get_coordinate_object()
+        coordinate_object = {
+            x = self.positionX,
+            y = self.positionY
+        }
+
+        return coordinate_object
     end
 
     return unit

@@ -3,7 +3,6 @@ function init_game()
     music(0)
 
     player:generate_player_units(1, 1, 1, 1)
-    --enemies:generate_enemies()
     state = "select"
 end
 
