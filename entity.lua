@@ -82,7 +82,11 @@ function make_quetz()
 
 end
 
-function take_damage(defender, damage)
+function take_damage(defender, damage, attacker)
+    modifyDamage = damage
+    if attacker.isOnPhysicalAttackModifierTile() then
+        modifyDamage = physicalAtkTileModifier(damage)
+    end
     defender.hp -= damage
 
     if defender.hp <= 0 then
@@ -91,6 +95,10 @@ function take_damage(defender, damage)
 end
 
 function take_heal(patient, heal)
+    modifyHeal = heal
+    if patient.isOnHealingTileModifier() then
+        modifyHeal = healingTileModifier(heal)
+    end
     patient.hp += heal
     patient.hp = hp_clamp(patient.hp, 0, patient.maxHP)
 end
