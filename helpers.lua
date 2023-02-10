@@ -32,6 +32,50 @@ function drawGrid()
     end
 end
 
+function draw_snake_box(x, y, width, height)
+
+    local w = 1
+    local h = 1
+
+    x_pixel = convertPositionToPixelCoordinate(x) 
+    y_pixel = convertPositionToPixelCoordinate(y) 
+
+    width_pixel = convertPositionToPixelCoordinate(width)
+    height_pixel = convertPositionToPixelCoordinate(height)
+
+    spr(203, x_pixel, y_pixel)
+
+    while w < width do
+        w_pixel = convertPositionToPixelCoordinate(w)
+        spr(201, x_pixel+w_pixel, y_pixel)
+        w += 1
+    end
+
+    spr(202, x_pixel+width_pixel, y_pixel)
+
+    while h < height do
+        h_pixel = convertPositionToPixelCoordinate(h)
+        spr(218, x_pixel+width_pixel, y_pixel+h_pixel)
+        h += 1
+    end
+
+    while w >= 0 do
+        w_pixel = convertPositionToPixelCoordinate(w)
+        spr(233, x_pixel+w_pixel, y_pixel+height_pixel)
+        w -= 1
+    end
+
+    while h >= 2 do
+        h_pixel = convertPositionToPixelCoordinate(h)
+        spr(217, x_pixel, y_pixel+h_pixel)
+        h -= 1
+    end
+
+    spr(234, x_pixel+width_pixel, y_pixel+height_pixel)
+    spr(232, x_pixel, y_pixel + height_pixel)
+    spr(216, x_pixel,y_pixel+8)
+end
+
 function convertPositionToPixelCoordinate(position) 
     pixelCoordinate = position * 8
 
@@ -62,36 +106,11 @@ colorEnum.greyPurple = 13
 colorEnum.pink = 14
 colorEnum.peach = 15
 
-function concatenate_tables(table, table_to_add)
-    for value in all(table_to_add) do
-        add(table, value)
-    end
-end
+function distance_between_coordinates(coordinate_object_1, coordinate_object_2)
+    difference_1 = abs(coordinate_object_1.x - coordinate_object_2.x)
+    difference_2 = abs(coordinate_object_1.y - coordinate_object_2.y)
 
-function table_has_value(table, check_value) 
-    for key, value in pairs(table) do
-        if (value == check_value) return true
-    end
-    return false
-end
+    distance = difference_1 + difference_2
 
-function table_has_key(table, check_key)
-    for key, value in pairs(table) do
-        if (key == check_key) return true
-    end
-    return false
-end
-
-function same_coordinates(coordinate_object_1, coordinate_object_2)
-    if coordinate_object_1.x == coordinate_object_2.x and coordinate_object_1.y == coordinate_object_2.y then
-        return true
-    end
-    return false
-end
-
-function coordinate_table_contains_coordinates(coordinate_table, coordinate_object)
-    for table_object in all(coordinate_table) do
-        if (same_coordinates(coordinate_object, table_object)) return true
-    end
-    return false
+    return distance
 end

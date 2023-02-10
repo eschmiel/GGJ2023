@@ -28,27 +28,16 @@ function unit_constructor()
     unit.oldPositionY = 0
     unit.active = true
 
-    function unit:move(coordinate_object, friendly)
+    function unit:move(coordinate_object)
         self.oldPositionX = self.positionX
         self.oldPositionY = self.positionY 
         
         self.positionX = coordinate_object.x
         self.positionY = coordinate_object.y
 
-        if friendly then
-            state = "menu"
-            pointer = 1
-           -- self:open_action_menu()
-        end
-    end
-
-    function unit:get_coordinate_object()
-        coordinate_object = {
-            x = self.positionX,
-            y = self.positionY
-        }
-
-        return coordinate_object
+        state = "menu"
+        pointer = 1
+       -- self:open_action_menu()
     end
 
     return unit
@@ -135,11 +124,7 @@ function make_quetz(positionX, positionY)
 
 end
 
-function take_damage(defender, damage, attacker)
-    modifyDamage = damage
-    if attacker.isOnPhysicalAttackModifierTile() then
-        modifyDamage = physicalAtkTileModifier(damage)
-    end
+function take_damage(defender, damage)
     defender.hp -= damage
 
     if defender.hp <= 0 then
@@ -148,10 +133,6 @@ function take_damage(defender, damage, attacker)
 end
 
 function take_heal(patient, heal)
-    modifyHeal = heal
-    if patient.isOnHealingTileModifier() then
-        modifyHeal = healingTileModifier(heal)
-    end
     patient.hp += heal
     patient.hp = hp_clamp(patient.hp, 0, patient.maxHP)
 end
