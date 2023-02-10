@@ -1,19 +1,16 @@
 pico-8 cartridge // http://www.pico-8.com
 version 39
 __lua__
-#include main.lua
-#include debugging_tools.lua
-#include entity.lua
-#include selector.lua
-#include selected_position.lua
-#include helpers.lua
-#include map_reference.lua
-#include movement_system.lua
-#include player.lua
-#include dialogue.lua
-#include enemy.lua
-#include level.lua
-#include game_scene.lua
+bun_sprite=8
+bun_x=67
+bun_y=27
+
+function _draw()
+ cls()
+ spr( bun_sprite, bun_x, bun_y)
+end
+
+
 __gfx__
 00000000dddddddccddddddd00000000000000000000000000000000000000006666077700000707000007070000070700000000000000000400090900400000
 00000000dddddcc00ccddddd00000000000000000000000000000000000000006006670700000707000007770000070700000000009009090090099909000909
@@ -142,5 +139,4 @@ __sfx__
 __music__
 03 01020304
 03 05060708
-
 

@@ -44,7 +44,7 @@ function check_tile(tile_coordinates, checked_tiles, tiles_in_range)
 end
 
 function is_tile_navigable(tile_coordinates)
-    tile_sprite = mget(tile_coordinates.x, tile_coordinates.y)
+    tile_sprite = mget(tile_coordinates.x + 96, tile_coordinates.y)
 
     if table_has_value(map_reference.wall_sprites, tile_sprite) then
         return false
