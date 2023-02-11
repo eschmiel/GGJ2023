@@ -1,19 +1,22 @@
 pico-8 cartridge // http://www.pico-8.com
 version 39
 __lua__
-#include main.lua
-#include debugging_tools.lua
-#include entity.lua
-#include selector.lua
-#include selected_position.lua
-#include helpers.lua
-#include map_reference.lua
-#include movement_system.lua
-#include player.lua
-#include dialogue.lua
-#include enemy.lua
-#include level.lua
-#include game_scene.lua
+#include src/main.lua
+#include src/general_helpers/debugging_tools.lua
+#include src/game_scene/entities/entity.lua
+#include src/game_scene/ui/selector.lua
+#include src/game_scene/ui/selected_position.lua
+#include src/general_helpers/helpers.lua
+#include src/game_scene/map_reference.lua
+#include src/game_scene/game_scene_helpers/movement_system.lua
+#include src/game_scene/entities/player.lua
+#include src/general_ui/dialogue.lua
+#include src/game_scene/entities/enemy.lua
+#include src/game_scene/level.lua
+#include src/game_scene/game_scene.lua
+#include src/intro_scene.lua
+#include src/game_scene/ui/action_menu.lua
+#include src/general_helpers/table_helpers.lua
 __gfx__
 00000000dddddddccddddddd00000000000000000000000000000000000000006666077700000707000007070000070700000000000000000400090900400000
 00000000dddddcc00ccddddd00000000000000000000000000000000000000006006670700000707000007770000070700000000009009090090099909000909
