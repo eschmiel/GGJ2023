@@ -53,6 +53,8 @@ function enemy:create_enemy_unit(unit_data)
         target_tile = self:find_tile_in_range_closest_to_nearest_player_unit()
 
         self:move(target_tile, false)
+
+        self.active = false;
     end
     
     -- could probably abstract find_nearest_player_unit and find_tile_in_range_closest_to_nearest_player_unit into the same function, driven by parameters
