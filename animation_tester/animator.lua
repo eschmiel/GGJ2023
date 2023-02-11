@@ -23,7 +23,7 @@ function generate_animator()
             if self.animation_frame > #self.loaded_animation then
                 self:reset_animation()
             else
-                self.switch_frame_at = animator:calculate_next_frame_switch()
+                self.switch_frame_at = self:calculate_next_frame_switch()
             end
         end
 
@@ -31,7 +31,7 @@ function generate_animator()
     end
 
     function animator:calculate_next_frame_switch()
-        frame_switch_at = 0
+        local frame_switch_at = 0
 
         for i=1, self.animation_frame do
             frame_switch_at += self.loaded_animation[self.animation_frame].hold_frames
@@ -52,13 +52,15 @@ function generate_animator()
     function animator:reset_animation()
         self.animation_frame = 1
         self.frame_count = 1
-        self.switch_frame_at = animator:calculate_next_frame_switch()
+        self.switch_frame_at = self:calculate_next_frame_switch()
     end
 
 
-    function animator:draw_animation(pixelX, pixelY)
+    function animator:draw_animation(pixelX, pixelY, w, h)
+        w = w or 1
+        h = h or 1
         current_frame_sprite = self.loaded_animation[self.animation_frame].animation_frame_sprite
-        spr(current_frame_sprite, pixelX, pixelY)
+        spr(current_frame_sprite, pixelX, pixelY, w, h)
     end
 
     return animator

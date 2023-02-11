@@ -1,7 +1,7 @@
 pico-8 cartridge // http://www.pico-8.com
 version 39
 __lua__
-#include main.lua
+#include barebonestester.lua
 #include animator.lua
 __gfx__
 00000000dddddddccddddddd00000000000000000000000000000000000000006666077700000707000070700000070700000000000000000400090900400000
