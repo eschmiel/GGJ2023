@@ -9,7 +9,7 @@ function generate_animator()
 
     function animator:load_animation(animation_object)
         self.loaded_animation = animation_object
-        self.initialize_animation()
+        self:initialize_animation()
     end
 
     function animator:initialize_animation()

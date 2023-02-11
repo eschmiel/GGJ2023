@@ -36,7 +36,7 @@ function _init()
         {animation_frame_sprite = 10, hold_frames = 5},
         {animation_frame_sprite = 11, hold_frames = 5}
     }
-    
+
     testAnimator:load_animation(animation_object) 
     
 end
@@ -47,14 +47,14 @@ function _update()
 
     if (btnp(4) and cursor.frame_selected == nil) cursor.frame_selected = cursor.frame_highlighted
     if (btnp(5) and cursor.frame_selected) cursor.frame_selected = nil
-    animator:run_animation()
+    testAnimator:run_animation()
 end
 
 function _draw()
     cls()
     draw_animation_frame_menu(1)
     draw_cursor()
-    animator:draw_animation(50, 20)
+    testAnimator:draw_animation(50, 20)
 end
 
 function draw_cursor()
