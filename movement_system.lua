@@ -1,4 +1,4 @@
-function get_tiles_in_range(origin_x, origin_y, range)
+function get_tiles_in_range(origin_x, origin_y, range, category)
     checked_tiles = {}
     tiles_in_range = {}
     distance_checked = 1
@@ -10,7 +10,7 @@ function get_tiles_in_range(origin_x, origin_y, range)
         new_tiles_to_check = {}
 
         for tile in all(tiles_to_check) do
-            neighboring_tiles_to_check = check_tile(tile, checked_tiles, tiles_in_range)
+            neighboring_tiles_to_check = check_tile(tile, checked_tiles, tiles_in_range, category)
             concatenate_tables(new_tiles_to_check, neighboring_tiles_to_check)
         end
 
@@ -20,12 +20,21 @@ function get_tiles_in_range(origin_x, origin_y, range)
 end
 
 
-function check_tile(tile_coordinates, checked_tiles, tiles_in_range)
+function check_tile(tile_coordinates, checked_tiles, tiles_in_range, category)
     add(checked_tiles, {x= tile_coordinates.x, y= tile_coordinates.y})
     
-    if not is_tile_navigable(tile_coordinates) then
-        add(bingoCheck, "bingo")
-         return
+    if category == "movement" then
+        if not is_tile_navigable(tile_coordinates) then
+            return
+        end
+    elseif category == "attack" or category == "magic" then
+        if not is_tile_unit(tile_coordinates, "enemy") then
+            return
+        end
+    elseif category == "heal" then
+        if not is_tile_unit(tile_coordinates, "player") then
+            return
+        end
     end
 
     tiles_to_check = {}
@@ -51,6 +60,24 @@ function is_tile_navigable(tile_coordinates)
     end
 
     return true
+end
+
+function is_tile_unit(tile_coordinates, unit_type)
+    local unit_collections
+
+    if unit_type == "player" then
+        unit_collections = player.units
+    elseif unit_type == "enemy" then
+        unit_collections = enemy.units
+    end
+
+    for unit in all(unit_collections) do
+        if same_coordinates(tile_coordinates, unit:get_coordinate_object()) then
+            return true
+        end
+    end
+
+    return false
 end
 
 function has_tile_been_checked(tile_coordinates, checked_tiles)

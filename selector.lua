@@ -85,7 +85,7 @@ function selector:hover_logic()
         for unit in all(player.units) do
             if self.positionX == unit.positionX and self.positionY == unit.positionY and unit.active then
                 self.selectable = true
-                tiles_in_range = get_tiles_in_range(self.positionX, self.positionY, unit.movement)
+                tiles_in_range = get_tiles_in_range(self.positionX, self.positionY, unit.movement, "movement")
                 self.hover_target = unit
                 break
             end

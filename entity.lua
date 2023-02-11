@@ -27,6 +27,9 @@ function unit_constructor()
     unit.oldPositionX = 0
     unit.oldPositionY = 0
     unit.active = true
+    unit.attack_range = 1
+    unit.magic_range = 2
+    unit.heal_range = 3
 
     function unit:move(coordinate_object, friendly)
         self.oldPositionX = self.positionX
