@@ -30,12 +30,14 @@ function _init()
     line_break = 8
     input_spacing = 4
 
-    animator = generate_animator()
-    animator.loaded_animation = {
+    testAnimator = generate_animator()
+    animation_object = {
         {animation_frame_sprite = 9, hold_frames = 5},
         {animation_frame_sprite = 10, hold_frames = 5},
         {animation_frame_sprite = 11, hold_frames = 5}
     }
+    
+    testAnimator:load_animation(animation_object) 
     
 end
 
@@ -52,7 +54,7 @@ function _draw()
     cls()
     draw_animation_frame_menu(1)
     draw_cursor()
-    animator:draw_animation()
+    animator:draw_animation(50, 20)
 end
 
 function draw_cursor()

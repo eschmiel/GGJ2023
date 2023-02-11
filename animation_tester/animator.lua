@@ -2,11 +2,15 @@ function generate_animator()
     animator = {
         animation_frame = 1,
         frame_count = 1,
-        active = false,
         loaded_animation = {},
         total_animation_frames = 0,
         switch_frame_at = 0
     }
+
+    function animator:load_animation(animation_object)
+        self.loaded_animation = animation_object
+        self.initialize_animation()
+    end
 
     function animator:initialize_animation()
         self:reset_animation()
@@ -14,13 +18,6 @@ function generate_animator()
     end
 
     function animator:run_animation()
-        if self.active == false then
-            self:initialize_animation()
-            self.active = true
-        else
-            self.frame_count += 1
-        end
-
         if self.frame_count >= self.switch_frame_at then
             self.animation_frame += 1
             if self.animation_frame > #self.loaded_animation then
@@ -29,6 +26,8 @@ function generate_animator()
                 self.switch_frame_at = animator:calculate_next_frame_switch()
             end
         end
+
+        self.frame_count += 1
     end
 
     function animator:calculate_next_frame_switch()
