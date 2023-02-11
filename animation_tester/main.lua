@@ -29,6 +29,14 @@ function _init()
 
     line_break = 8
     input_spacing = 4
+
+    animator = generate_animator()
+    animator.loaded_animation = {
+        {animation_frame_sprite = 9, hold_frames = 5},
+        {animation_frame_sprite = 10, hold_frames = 5},
+        {animation_frame_sprite = 11, hold_frames = 5}
+    }
+    
 end
 
 function _update()
@@ -37,12 +45,14 @@ function _update()
 
     if (btnp(4) and cursor.frame_selected == nil) cursor.frame_selected = cursor.frame_highlighted
     if (btnp(5) and cursor.frame_selected) cursor.frame_selected = nil
+    animator:run_animation()
 end
 
 function _draw()
     cls()
     draw_animation_frame_menu(1)
     draw_cursor()
+    animator:draw_animation()
 end
 
 function draw_cursor()
