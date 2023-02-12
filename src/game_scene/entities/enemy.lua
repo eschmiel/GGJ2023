@@ -27,7 +27,7 @@ function enemy:draw_units()
         if (unit.type == "tez") pal(colorEnum.grey, colorEnum.pink)
         spr(unit.spriteId, xPixelCoordinate, yPixelCoordinate)
         pal()
-        palt(colorEnum.black, false)
+        palt(colorEnum.black, true)
     end
 end
 

@@ -1,6 +1,6 @@
 function _init()
 
-    palt(colorEnum.black, false)
+    palt(colorEnum.black, true)
     music(1)
     _update = update_menu
     _draw = draw_menu
