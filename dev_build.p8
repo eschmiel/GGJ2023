@@ -3,20 +3,27 @@ version 39
 __lua__
 #include src/main.lua
 #include src/general_helpers/debugging_tools.lua
-#include src/game_scene/entities/entity.lua
 #include src/game_scene/ui/selector.lua
 #include src/game_scene/ui/selected_position.lua
 #include src/general_helpers/helpers.lua
 #include src/game_scene/map_reference.lua
 #include src/game_scene/game_scene_helpers/movement_system.lua
-#include src/game_scene/entities/player.lua
 #include src/general_ui/dialogue.lua
 #include src/game_scene/entities/enemy.lua
+#include src/game_scene/entities/faction.lua
 #include src/game_scene/level.lua
 #include src/game_scene/game_scene.lua
 #include src/intro_scene.lua
 #include src/game_scene/ui/action_menu.lua
 #include src/general_helpers/table_helpers.lua
+#include src/services/animation_system/animator.lua
+#include src/services/animation_system/animation_manager.lua
+#include src/game_scene/entities/units/huitz.lua
+#include src/game_scene/entities/units/quetz.lua
+#include src/game_scene/entities/units/tez.lua
+#include src/game_scene/entities/units/xipe.lua
+#include src/game_scene/entities/units/unit.lua
+#include src/game_scene/ui/unit_stat_block.lua
 __gfx__
 00000000dddddddccddddddd00000000000000000000000000000000000000006666077700000707000007070000070700000000000000000400090900400000
 00000000dddddcc00ccddddd00000000000000000000000000000000000000006006670700000707000007770000070700000000009009090090099909000909
