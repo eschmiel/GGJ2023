@@ -8,9 +8,9 @@ __lua__
 #include src/general_helpers/helpers.lua
 #include src/game_scene/map_reference.lua
 #include src/game_scene/game_scene_helpers/movement_system.lua
-#include src/game_scene/entities/player.lua
 #include src/general_ui/dialogue.lua
 #include src/game_scene/entities/enemy.lua
+#include src/game_scene/entities/faction.lua
 #include src/game_scene/level.lua
 #include src/game_scene/game_scene.lua
 #include src/intro_scene.lua

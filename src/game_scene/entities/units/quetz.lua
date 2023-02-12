@@ -13,6 +13,10 @@ function generate_quetz()
 ----------------------
 -- build animations --
 ----------------------
+    state_animations = {
+        idle = generate_animator(),
+        moving = generate_animator()
+    }
 
     idle_animation = {
         {animation_frame_sprite = 48, hold_frames = 100}
@@ -24,12 +28,10 @@ function generate_quetz()
         {animation_frame_sprite = 43, hold_frames = 5},
     }
 
-    state_animation_table = {
-        "idle" = idle_animation,
-        "moving" = moving_animation
-    }
+    state_animations.idle:load_animation(idle_animation)
+    state_animations.moving:load_animation(moving_animation)
 
-    new_unit.animation_manager = generate_animation_manager(state_animation_table)
+    new_unit.animation_manager = generate_animation_manager(state_animations)
 
     return new_unit
 end

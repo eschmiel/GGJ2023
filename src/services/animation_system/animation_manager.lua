@@ -2,10 +2,10 @@
 -- during those states
 -- { state_name_string: animation_object}
 
-function generate_animation_manager(state_animation_table)
+function generate_animation_manager(set_state_animations)
     animation_manager = {
-        animation_state = "",
-        state_animations = state_animation_table
+        animation_state = "idle",
+        state_animations = set_state_animations
     }
 
     function animation_manager:get_current_animation()
@@ -18,12 +18,12 @@ function generate_animation_manager(state_animation_table)
 
     function animation_manager:run_animation()
         current_animation = self:get_current_animation()
-        current_animation.run_animation()
+        current_animation:run_animation()
     end
 
-    function animation_manager:draw_animation()
+    function animation_manager:draw_animation(pixelX, pixelY)
         current_animation = self:get_current_animation()
-        current_animation.draw_animation()
+        current_animation:draw_animation(pixelX, pixelY)
     end
 
     return animation_manager

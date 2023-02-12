@@ -22,7 +22,7 @@ function selector:draw()
             statbox_x = 10
             stabox_x = 10
         end
-         show_stats(self.hover_target, statbox_x, statbox_y)
+        show_unit_stats(self.hover_target, statbox_x, statbox_y)
     end
 end
 

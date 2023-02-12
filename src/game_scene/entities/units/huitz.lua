@@ -14,11 +14,16 @@ function generate_huitz()
 ----------------------
 -- build animations --
 ----------------------
+    state_animations = {
+        idle = generate_animator(),
+        moving = generate_animator()
+    }
 
     idle_animation = {
         {animation_frame_sprite = 45, hold_frames = 15},
         {animation_frame_sprite = 46, hold_frames = 5},
-        {animation_frame_sprite = 47, hold_frames = 5}
+        {animation_frame_sprite = 47, hold_frames = 7},
+        {animation_frame_sprite = 46, hold_frames = 5},
     }
 
     moving_animation = {
@@ -27,12 +32,10 @@ function generate_huitz()
         {animation_frame_sprite = 15, hold_frames = 5},
     }
 
-    state_animation_table = {
-        "idle" = idle_animation,
-        "moving" = moving_animation
-    }
+    state_animations.idle:load_animation(idle_animation)
+    state_animations.moving:load_animation(moving_animation)
 
-    new_unit.animation_manager = generate_animation_manager(state_animation_table)
+    new_unit.animation_manager = generate_animation_manager(state_animations)
 
     return new_unit
 end
