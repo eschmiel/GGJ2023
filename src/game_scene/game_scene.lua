@@ -13,7 +13,6 @@ function draw_game()
     selector:draw_tiles_in_range()
     player:draw_units()
     enemy:draw_units()
-    entity:draw()
     selector:draw()
     selectedPosition:draw()
 

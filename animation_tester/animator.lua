@@ -1,3 +1,7 @@
+-- an animation object is:
+-- -- animation_frame_sprite = the sprite id for that frame of animation
+-- -- hold_frames = the number of frames to display this animation frame for before showing the next one
+
 function generate_animator()
     animator = {
         animation_frame = 1,

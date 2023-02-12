@@ -4,7 +4,7 @@
 
 function generate_animation_manager(state_animation_table)
     animation_manager = {
-        animation_state = "",
+        animation_state = "idle",
         state_animations = state_animation_table
     }
 
