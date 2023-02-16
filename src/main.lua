@@ -1,7 +1,7 @@
 function _init()
-
-    palt(colorEnum.black, false)
+    --palt(colorEnum.black, true)
     music(1)
+    scene_data = "boom"
     _update = update_menu
     _draw = draw_menu
 
@@ -17,6 +17,6 @@ function draw_testing()
 
     dialogue("Carter", "")
    -- rect(0, 0, 127, 127)
-    show_stats(unit1, 0, 0)
+   show_unit_stats(unit1, 0, 0)
 
 end
