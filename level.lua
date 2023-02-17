@@ -25,7 +25,7 @@ levels[1].startingEnemyData[3] = {
 
 levels[1].startingEnemyData[4] = {
     type = "quetz",
-    positionX = 13,
+    positionX = 12,
     positionY = 2
 }
 

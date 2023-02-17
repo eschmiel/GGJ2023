@@ -22,6 +22,7 @@ function unit_constructor()
     unit.hp = 20
     unit.attack = 4
     unit.magic = 2
+    unit.resistance = 2
     unit.movement = 3
     unit.sprite = 13
     unit.oldPositionX = 0

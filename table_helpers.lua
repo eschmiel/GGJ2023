@@ -4,6 +4,20 @@ function concatenate_tables(table, table_to_add)
     end
 end
 
+function concatenate_tables_no_dupes(table, table_to_add)
+    for add_value in all(table_to_add) do
+    add_value_is_in_table = false
+        for current_value in all(table) do 
+            if same_coordinates(add_value, current_value) then
+                add_value_is_in_table = true
+            end
+        end
+        if not add_value_is_in_table then
+            add(table, add_value)
+        end
+    end
+end
+
 function table_has_value(table, check_value) 
     for key, value in pairs(table) do
         if (value == check_value) return true
