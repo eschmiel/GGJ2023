@@ -30,6 +30,10 @@ function generate_faction(set_type)
         end
     end
 
+    function faction:controls()
+        
+    end
+
     function faction:run_unit_animations()
         for unit in all(self.units) do
             unit.animation_manager:run_animation()
