@@ -5,6 +5,8 @@ function init_game()
     enemy = generate_faction("enemy")
     enemy:generate_units(levels[1].startingEnemyUnitData)
     player:generate_units(levels[1].startingPlayerUnitData)
+    turn_manager = setup_turn_manager({player, enemy})
+    enemy_ai = setup_faction_ai(enemy)
     state = "select"
 end
 
@@ -44,8 +46,6 @@ function update_game()
     elseif state == "menu" then
         menu_controls(selector.selected)
     elseif state == "enemy turn" then
-        for unit in all(enemy.units) do
-            unit:move_action()
-        end
+        enemy_ai:take_turn()
     end
 end
