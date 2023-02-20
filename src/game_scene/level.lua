@@ -19,7 +19,7 @@ levels[1] = {
         },
         {
             type = "quetz",
-            positionX = 13,
+            positionX = 12,
             positionY = 2
         },
         {
@@ -42,7 +42,7 @@ levels[1] = {
         },
         {
             type = "quetz",
-            positionX = 4,
+            positionX = 7,
             positionY = 2
         },
         {
