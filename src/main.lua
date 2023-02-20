@@ -1,7 +1,7 @@
 function _init()
     --palt(colorEnum.black, true)
     music(1)
-    scene_data = "boom"
+
     _update = update_menu
     _draw = draw_menu
 

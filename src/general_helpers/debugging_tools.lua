@@ -13,6 +13,7 @@ end
 
 function log_table_changes(table)
     index = 0
+    rectfill(0, 0, 64, 128, colorEnum.black)
     for value in all(table) do
        subindex = 0
         for k, v in pairs(value) do
@@ -21,7 +22,7 @@ function log_table_changes(table)
 
             subindex += 30
         end
-        index += 20
+        index += 8
     end
 end
 

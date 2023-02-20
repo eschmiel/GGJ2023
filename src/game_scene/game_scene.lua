@@ -25,10 +25,13 @@ function draw_game()
         make_menu()
     elseif state == "new turn start" then
         turn_manager:draw_new_turn_start_notice()
+
+    elseif state == "attack" or state == "magic" or state == "heal" then
+        draw_target_selector(selector.selected, state)
     end
 end
 
-pointer = nil
+
 
 function update_game()
     if state == "new turn start" then
@@ -47,5 +50,7 @@ function update_game()
         menu_controls(selector.selected)
     elseif state == "enemy turn" then
         enemy_ai:take_turn()
+    elseif state == "attack" or state == "heal" or state == "magic" then
+        attack_menu(selector.selected, state)
     end
 end
