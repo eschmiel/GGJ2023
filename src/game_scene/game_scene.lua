@@ -6,6 +6,7 @@ function init_game()
     enemy:generate_units(levels[1].startingEnemyUnitData)
     player:generate_units(levels[1].startingPlayerUnitData)
     state = "select"
+
 end
 
 function draw_game()
@@ -42,4 +43,16 @@ function update_game()
     else
         attack_menu(selector.selected, state)
     end
+end
+
+function check_win()
+    if #enemy <= 0 then
+        state = "win"
+    end
+end
+
+function check_lose()
+    if #player <= 0 then
+        state = "lose"
+    end 
 end

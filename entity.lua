@@ -55,6 +55,14 @@ function unit_constructor()
         return coordinate_object
     end
 
+    --TODO Later (find a way to figure out if enemy or player)
+    function unit:isDead()
+        if self.hp <= 0 then
+            del(player, self)
+            del(enemy, self)
+        end
+    end
+
     return unit
 end
 
