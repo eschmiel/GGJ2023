@@ -187,6 +187,8 @@ function draw_target_selector(unit, category)
         range = unit.heal_range
     end
 
+    print(range, 0, 126, colorEnum.blue)
+
     targets = get_tiles_in_range(unit.positionX, unit.positionY, range, category)
 
     if #targets == 0 then
