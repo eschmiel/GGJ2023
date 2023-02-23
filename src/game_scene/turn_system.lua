@@ -55,6 +55,8 @@ function setup_turn_manager(factions)
 
             if controller[5] then
                 if active_faction_manager.type == "player" then
+                    selector.selected = nil
+
                     state = "select"
                 end
                 if active_faction_manager.type == "enemy" then
