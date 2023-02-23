@@ -59,21 +59,6 @@ end
 
 function check_win()
     local win = nil
-<<<<<<< HEAD
-    if #enemy <= 0 then
-        win = true
-        state = "win"
-    end
-
-    if #player <= 0 then
-        win = false
-        state = "lose"
-    end 
-
-    return win
-end
-
-=======
 
     if #player.units <= 0 then
         win = false
@@ -90,4 +75,3 @@ end
 
     return win
 end
->>>>>>> main
