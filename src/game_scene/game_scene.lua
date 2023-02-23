@@ -46,13 +46,17 @@ function update_game()
 end
 
 function check_win()
+    local win = nil
     if #enemy <= 0 then
+        win = true
         state = "win"
     end
-end
 
-function check_lose()
     if #player <= 0 then
+        win = false
         state = "lose"
     end 
+
+    return win
 end
+

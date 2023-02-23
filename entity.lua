@@ -32,6 +32,7 @@ function unit_constructor()
     unit.magic_range = 2
     unit.heal_range = 3
 
+    --method moves the unit
     function unit:move(coordinate_object, friendly)
         self.oldPositionX = self.positionX
         self.oldPositionY = self.positionY 
@@ -42,10 +43,10 @@ function unit_constructor()
         if friendly then
             state = "menu"
             pointer = 1
-           -- self:open_action_menu()
         end
     end
 
+    --method gets the coordinate object of the unit
     function unit:get_coordinate_object()
         coordinate_object = {
             x = self.positionX,
@@ -56,18 +57,26 @@ function unit_constructor()
     end
 
     --TODO Later (find a way to figure out if enemy or player)
+    --method checks if the unit is dead
     function unit:isDead()
+        local dead = nil
         if self.hp <= 0 then
+            dead = true
             del(player, self)
             del(enemy, self)
+        else 
+            dead = false
         end
+
+        return dead
+
     end
 
     return unit
 end
 
 
-
+--make huitz unit at position x and y
 function make_huitz(positionX, positionY)
     new_unit = unit_constructor()
 
@@ -88,6 +97,7 @@ function make_huitz(positionX, positionY)
 
 end
 
+--make xipe unit at position x and y
 function make_xipe(positionX, positionY)
     new_unit = unit_constructor()
 
@@ -107,6 +117,7 @@ function make_xipe(positionX, positionY)
     return new_unit
 end
 
+--make tez unit at position x and y
 function make_tez(positionX, positionY)
     new_unit = unit_constructor()
 
@@ -127,6 +138,7 @@ function make_tez(positionX, positionY)
 
 end
 
+--make quetz unit at position x and y
 function make_quetz(positionX, positionY)
     new_unit = unit_constructor()
 
@@ -147,19 +159,32 @@ function make_quetz(positionX, positionY)
 
 end
 
+--method takes a unit and applies damage to the unit and checks if the unit is dead and if the player has won or lost
 function take_damage(defender, damage)
     defender.hp -= damage
 
-    if defender.hp <= 0 then
-        --they dead
+    defender.hp = hp_clamp(defender.hp, 0, defender.maxHP)
+
+    if defender:isDead() then
+        if check_win() == not nil then
+            if check_win() then
+                --victory
+            else
+                --lose
+            end
+        else
+            --continue the game
+        end
     end
 end
 
+--method takes a unit and applies a heal
 function take_heal(patient, heal)
     patient.hp += heal
     patient.hp = hp_clamp(patient.hp, 0, patient.maxHP)
 end
 
+--helpful method to keep hp values within the range
 function hp_clamp(hp, min, max)
 	if hp > max then
         hp = max
@@ -170,6 +195,7 @@ function hp_clamp(hp, min, max)
     return hp
 end
 
+--function that shows the stats of a given unit at x and y location
 function show_stats(unit, x, y)
 convertX = convertPositionToPixelCoordinate(x)
 convertY = convertPositionToPixelCoordinate(y)
@@ -183,9 +209,6 @@ convertY = convertPositionToPixelCoordinate(y)
     print(unit.type, i*8, j*8, colorEnum.white)
     j += 1
 
-    --showing health in 4s
-
-    
 
     print(unit.hp.."/"..unit.maxHP, i*8, j*8)
 
