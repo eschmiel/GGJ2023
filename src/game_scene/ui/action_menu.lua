@@ -80,8 +80,6 @@ end
 function attack_menu(unit, category)
     local range
 
-    
-
     target_units = {}
 
     --list of units within range
@@ -98,6 +96,7 @@ function attack_menu(unit, category)
         u = player.units
     end
 
+    
     
     targets = get_tiles_in_range(unit.positionX, unit.positionY, range, category)
     
@@ -135,8 +134,7 @@ function attack_menu(unit, category)
                 damage = 0
             end
 
-            take_damage(target_units[pointer], damage)
-
+            target_units[pointer]:take_damage(damage)
 
         elseif category == "magic" then
             --magic method
@@ -147,10 +145,10 @@ function attack_menu(unit, category)
                 damage = 0
             end
 
-            take_damage(target_units[pointer], damage)
+            target_units[pointer]:take_damage(damage)
         elseif category == "heal" then
             --heal method
-            take_heal(target_units[pointer], unit.magic*3/4 )
+            target_units[pointer]:take_heal(unit.magic*3/4)
         end
 
         selector.selected = nil

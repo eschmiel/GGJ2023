@@ -13,6 +13,9 @@ function unit_constructor()
     unit.oldPositionX = 0
     unit.oldPositionY = 0
     unit.active = true
+    unit.attack_range = 1
+    unit.magic_range = 2
+    unit.heal_range = 3
 
     function unit:move(coordinate_object, friendly)
         self.oldPositionX = self.positionX
@@ -39,9 +42,17 @@ function unit_constructor()
 
     function unit:take_damage(damage)
         self.hp -= damage
+
+        self:hp_clamp()
     
-        if self.hp <= 0 then
-            --they dead
+        if self:is_dead() then
+            if check_win() != nil then
+                if check_win() then
+                    --print("WIN!!!", 0, 80, colorEnum.red)
+                else
+                    --print("LOSE!!", 0, 80, colorEnum.red)
+                end
+            end
         end
     end
 
@@ -56,6 +67,21 @@ function unit_constructor()
         elseif self.hp < self.minHP then
             self.hp = self.minHP
         end
+    end
+
+    --checks if the unit is dead and if so remove from the lists
+    function unit:is_dead()
+
+        local dead = false
+
+        if self.hp <= 0 then
+            del(enemy.units, self)
+
+            dead = true
+        end
+
+        return dead
+
     end
 
     return unit

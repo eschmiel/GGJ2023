@@ -16,6 +16,7 @@ __lua__
 #include src/intro_scene.lua
 #include src/game_scene/ui/action_menu.lua
 #include src/general_helpers/table_helpers.lua
+#include src/game_scene/turn_system.lua
 #include src/services/animation_system/animator.lua
 #include src/services/animation_system/animation_manager.lua
 #include src/game_scene/entities/units/huitz.lua

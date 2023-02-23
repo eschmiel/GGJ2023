@@ -4,10 +4,10 @@ function generate_quetz()
     new_unit.type = "quetz"
     new_unit.maxHP = 12
     new_unit.hp = 12
-    new_unit.attack = 1
-    new_unit.defence = 2
-    new_unit.magic = 5
-    new_unit.resistance = 3
+    new_unit.attack = 40
+    new_unit.defence = 40
+    new_unit.magic = 40
+    new_unit.resistance = 4
     new_unit.movement = 5
 
 ----------------------
