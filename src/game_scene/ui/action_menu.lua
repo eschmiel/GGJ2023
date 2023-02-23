@@ -97,6 +97,7 @@ function attack_menu(unit, category)
     end
 
     
+    
     targets = get_tiles_in_range(unit.positionX, unit.positionY, range, category)
     
 

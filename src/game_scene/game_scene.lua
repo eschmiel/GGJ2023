@@ -12,6 +12,7 @@ end
 
 function draw_game()
     cls()
+    check_win()
     map(96,0)
     --selector:checkMoveRange()
     selector:draw_tiles_in_range()
@@ -53,4 +54,23 @@ function update_game()
     elseif state == "attack" or state == "heal" or state == "magic" then
         attack_menu(selector.selected, state)
     end
+end
+
+function check_win()
+    local win = nil
+
+    if #player.units <= 0 then
+        win = false
+        --state = "lose"
+
+        print("LOSE")
+    end
+
+    if #enemy.units <= 0 then
+        win = true
+        --state = "win"
+        print("WIN")
+    end
+
+    return win
 end
