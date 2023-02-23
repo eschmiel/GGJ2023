@@ -39,6 +39,9 @@ function update_game()
     else
         turn_manager:turn_logic()
     end
+    
+    player:resolve_unit_actions()
+    enemy:resolve_unit_actions()
 
     player:run_unit_animations()
     enemy:run_unit_animations()

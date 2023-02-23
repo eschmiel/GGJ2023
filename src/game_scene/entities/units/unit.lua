@@ -16,19 +16,10 @@ function unit_constructor()
     unit.attack_range = 1
     unit.magic_range = 2
     unit.heal_range = 3
+    unit.action_resolver = generateActionResolver(unit)
 
     function unit:move(coordinate_object, friendly)
-        self.oldPositionX = self.positionX
-        self.oldPositionY = self.positionY 
-        
-        self.positionX = coordinate_object.x
-        self.positionY = coordinate_object.y
-
-        if friendly then
-            state = "menu"
-            pointer = 1
-           -- self:open_action_menu()
-        end
+        self.action_resolver.beginAction(self.action_resolver, unitActionsEnum.MOVE, {destination_coordinate_object = coordinate_object})
     end
 
     function unit:get_coordinate_object()

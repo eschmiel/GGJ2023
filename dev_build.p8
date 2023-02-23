@@ -25,6 +25,12 @@ __lua__
 #include src/game_scene/entities/units/xipe.lua
 #include src/game_scene/entities/units/unit.lua
 #include src/game_scene/ui/unit_stat_block.lua
+
+#include src/game_scene/entities/units/action_resolver.lua
+#include src/game_scene/entities/units/helpers/unitHelpers.lua
+#include src/game_scene/entities/units/actions/move_action.lua
+
+
 __gfx__
 00000000dddddddccddddddd00000000000000000000000000000000000000006666077700000707000007070000070700000000000000000400090900400000
 00000000dddddcc00ccddddd00000000000000000000000000000000000000006006670700000707000007770000070700000000009009090090099909000909

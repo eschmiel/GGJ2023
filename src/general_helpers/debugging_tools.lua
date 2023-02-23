@@ -37,7 +37,7 @@ end
 
 function log_table_external(table)
     printh("", "bingo.txt", true)
-    --printh(#table, "bingo.txt", false)
+    printh(#table, "bingo.txt", false)
     for k, v in pairs(table) do
         printh(k..": "..v, "bingo.txt", false)
 

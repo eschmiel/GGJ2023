@@ -30,8 +30,10 @@ function generate_faction(set_type)
         end
     end
 
-    function faction:controls()
-        
+    function faction:resolve_unit_actions()
+        for unit in all(self.units) do
+            unit.action_resolver:resolveAction()
+        end
     end
 
     function faction:run_unit_animations()
@@ -53,7 +55,7 @@ function generate_faction(set_type)
 
             unit.animation_manager:draw_animation(xPixelCoordinate, yPixelCoordinate)
             pal()
-            palt(colorEnum.black, false)
+            palt(colorEnum.black, true)
         end
     end
 

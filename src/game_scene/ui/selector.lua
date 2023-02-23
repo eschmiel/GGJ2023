@@ -56,6 +56,7 @@ function selector:moveControls()
         elseif coordinate_table_contains_coordinates(tiles_in_range, {x = self.positionX, y = self.positionY}) then
             self.selected:move({x = self.positionX, y = self.positionY}, true)
             self.tiles_in_range = {}
+            self.selected = nil
         end
 
     end
