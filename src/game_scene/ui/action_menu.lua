@@ -194,3 +194,10 @@ function draw_target_selector(unit, category)
 
     rect(selected_target_pixel_position_x, selected_target_pixel_position_y, selected_target_pixel_position_x + 8, selected_target_pixel_position_y + 8, colorEnum.red)
 end
+
+function show_unit_is_unactive(coordinates)
+    c_x = convertPositionToPixelCoordinate(coordinates.x)
+    c_y = convertPositionToPixelCoordinate(coordinates.y)
+    
+    rect(c_x, c_y, c_x + 8, c_y + 8, colorEnum.grey)
+end
