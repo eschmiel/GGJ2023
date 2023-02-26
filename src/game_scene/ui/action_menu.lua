@@ -1,13 +1,12 @@
 pointer = nil
 
 function make_menu()
-
     --have an array of choices (str)
-    choices = {"attack", "magic", "heal", "wait", "cancel"}
+    choices = {"attack", "magic", "heal", "buff", "debuff", "wait", "cancel"}
 
     menuStart = 0
     menuEndX = 4
-    menuEndY = 5
+    menuEndY = 7
     rectEndX = convertPositionToPixelCoordinate(menuEndX)
     rectEndY = convertPositionToPixelCoordinate(menuEndY)
     --build a box for the menu itself
@@ -17,6 +16,7 @@ function make_menu()
     i = 1
     menu_length = 1
     --print out the array inside the box
+    --print the current choice with a different color (white)
     for c in all(choices) do
         menu_button_color = colorEnum.grey
         if i == pointer then
@@ -27,8 +27,6 @@ function make_menu()
         i += 1
         menu_length += 1
     end
-    --print the current choice with a different color (red)
-
 end
 
 function menu_controls(unit)
@@ -96,8 +94,6 @@ function attack_menu(unit, category)
         u = player.units
     end
 
-    
-    
     targets = get_tiles_in_range(unit.positionX, unit.positionY, range, category)
     
 
@@ -110,6 +106,14 @@ function attack_menu(unit, category)
     end
 
     controls = controllerListener()
+
+    if (controls[6]) then
+        --cancel
+        state = "menu"
+        pointer = 1
+    end
+
+    if (isEmpty(target_units)) return
 
     --right and up
     if (controls[2] or controls[3]) then
@@ -154,11 +158,6 @@ function attack_menu(unit, category)
         selector.selected = nil
         unit.active = false
         state = "select"
-
-    elseif (controls[6]) then
-        --cancel
-        state = "menu"
-        pointer = 1
     end
 
     
@@ -193,11 +192,4 @@ function draw_target_selector(unit, category)
     selected_target_pixel_position_y = convertPositionToPixelCoordinate(selected_target_position_y)
 
     rect(selected_target_pixel_position_x, selected_target_pixel_position_y, selected_target_pixel_position_x + 8, selected_target_pixel_position_y + 8, colorEnum.red)
-end
-
-function show_unit_is_unactive(coordinates)
-    c_x = convertPositionToPixelCoordinate(coordinates.x)
-    c_y = convertPositionToPixelCoordinate(coordinates.y)
-    
-    rect(c_x, c_y, c_x + 8, c_y + 8, colorEnum.grey)
 end
