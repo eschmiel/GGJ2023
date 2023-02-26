@@ -1,8 +1,10 @@
 function get_tiles_in_range(origin_x, origin_y, range, category)
 
     checked_tiles = { {x = origin_x, y = origin_y} } 
-    tiles_in_range = { {x = origin_x, y = origin_y} }
+    tiles_in_range = {}
     distance_checked = 1
+
+    if (category == "movement" or category == "heal") add(tiles_in_range, {x = origin_x, y = origin_y})
 
     tiles_to_check = get_neighboring_tiles({x = origin_x, y = origin_y})
 

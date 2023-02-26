@@ -107,6 +107,14 @@ function attack_menu(unit, category)
 
     controls = controllerListener()
 
+    if (controls[6]) then
+        --cancel
+        state = "menu"
+        pointer = 1
+    end
+
+    if (isEmpty(target_units)) return
+
     --right and up
     if (controls[2] or controls[3]) then
         pointer += 1
@@ -150,11 +158,6 @@ function attack_menu(unit, category)
         selector.selected = nil
         unit.active = false
         state = "select"
-
-    elseif (controls[6]) then
-        --cancel
-        state = "menu"
-        pointer = 1
     end
 
     
