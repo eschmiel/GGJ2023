@@ -8,16 +8,27 @@ function init_game()
     turn_manager = setup_turn_manager({player, enemy})
     enemy_ai = setup_faction_ai(enemy)
     state = "select"
+
 end
 
 function draw_game()
     cls()
     check_win()
     map(96,0)
+
+    
+
     --selector:checkMoveRange()
     selector:draw_tiles_in_range()
     player:draw_unit_animations()
     enemy:draw_unit_animations()
+
+    --for p in all(player.units) do
+        --if not p.active then 
+            --show_unit_is_unactive(p:get_coordinate_object())
+        --end
+    --end
+
     selector:draw()
     selectedPosition:draw()
 
@@ -30,6 +41,9 @@ function draw_game()
     elseif state == "attack" or state == "magic" or state == "heal" then
         draw_target_selector(selector.selected, state)
     end
+
+    
+    
 end
 
 

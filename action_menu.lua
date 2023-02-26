@@ -2,12 +2,22 @@ pointer = nil
 
 function make_menu()
 
+    --choices = {}
+
+    --if units are within attack_range add attack
+    --if units are within magic range add magic
+    --if units are within healing range heal
+    
+    --if unit can set down a debuff tile add debuff
+    --either way add wait and cancel
+
     --have an array of choices (str)
-    choices = {"attack", "magic", "heal", "wait", "cancel"}
+    choices = {"attack", "magic", "heal", "buff", "debuff", "wait", "cancel"}
+
 
     menuStart = 0
     menuEndX = 4
-    menuEndY = 5
+    menuEndY = 7
     rectEndX = convertPositionToPixelCoordinate(menuEndX)
     rectEndY = convertPositionToPixelCoordinate(menuEndY)
     --build a box for the menu itself
@@ -27,7 +37,7 @@ function make_menu()
         i += 1
         menu_length += 1
     end
-    --print the current choice with a different color (red)
+    --print the current choice with a different color (white)
 
 end
 
@@ -80,6 +90,8 @@ end
 function attack_menu(unit, category)
     local range
 
+    
+
     target_units = {}
 
     --list of units within range
@@ -96,7 +108,6 @@ function attack_menu(unit, category)
         u = player.units
     end
 
-    
     
     targets = get_tiles_in_range(unit.positionX, unit.positionY, range, category)
     
@@ -134,7 +145,8 @@ function attack_menu(unit, category)
                 damage = 0
             end
 
-            target_units[pointer]:take_damage(damage)
+            take_damage(target_units[pointer], damage)
+
 
         elseif category == "magic" then
             --magic method
@@ -145,10 +157,10 @@ function attack_menu(unit, category)
                 damage = 0
             end
 
-            target_units[pointer]:take_damage(damage)
+            take_damage(target_units[pointer], damage)
         elseif category == "heal" then
             --heal method
-            target_units[pointer]:take_heal(unit.magic*3/4)
+            take_heal(target_units[pointer], unit.magic*3/4 )
         end
 
         selector.selected = nil
@@ -175,6 +187,8 @@ function draw_target_selector(unit, category)
         range = unit.heal_range
     end
 
+    print(range, 0, 126, colorEnum.blue)
+
     targets = get_tiles_in_range(unit.positionX, unit.positionY, range, category)
 
     if #targets == 0 then
@@ -193,11 +207,4 @@ function draw_target_selector(unit, category)
     selected_target_pixel_position_y = convertPositionToPixelCoordinate(selected_target_position_y)
 
     rect(selected_target_pixel_position_x, selected_target_pixel_position_y, selected_target_pixel_position_x + 8, selected_target_pixel_position_y + 8, colorEnum.red)
-end
-
-function show_unit_is_unactive(coordinates)
-    c_x = convertPositionToPixelCoordinate(coordinates.x)
-    c_y = convertPositionToPixelCoordinate(coordinates.y)
-    
-    rect(c_x, c_y, c_x + 8, c_y + 8, colorEnum.grey)
 end
