@@ -8,15 +8,18 @@ function init_game()
     turn_manager = setup_turn_manager({player, enemy})
     enemy_ai = setup_faction_ai(enemy)
     state = "select"
+
 end
 
 function draw_game()
     cls()
+    check_win()
     map(96,0)
-    --selector:checkMoveRange()
+
     selector:draw_tiles_in_range()
     player:draw_unit_animations()
     enemy:draw_unit_animations()
+
     selector:draw()
     selectedPosition:draw()
 
@@ -29,9 +32,10 @@ function draw_game()
     elseif state == "attack" or state == "magic" or state == "heal" then
         draw_target_selector(selector.selected, state)
     end
+
+    
+    
 end
-
-
 
 function update_game()
     if state == "new turn start" then
@@ -56,4 +60,23 @@ function update_game()
     elseif state == "attack" or state == "heal" or state == "magic" then
         attack_menu(selector.selected, state)
     end
+end
+
+function check_win()
+    local win = nil
+
+    if #player.units <= 0 then
+        win = false
+        --state = "lose"
+
+        print("LOSE")
+    end
+
+    if #enemy.units <= 0 then
+        win = true
+        --state = "win"
+        print("WIN")
+    end
+
+    return win
 end

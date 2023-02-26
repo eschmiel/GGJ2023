@@ -50,6 +50,10 @@ function generate_faction(set_type)
                 if (unit.type == "tez") pal(colorEnum.grey, colorEnum.pink)
             end
 
+            if not unit.active and self.type == "player" then
+                if (unit.type != nil) pal(colorEnum.black, colorEnum.greyPurple)
+            end
+
             xPixelCoordinate = convertPositionToPixelCoordinate(unit.positionX)
             yPixelCoordinate = convertPositionToPixelCoordinate(unit.positionY)
 

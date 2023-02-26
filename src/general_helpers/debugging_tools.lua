@@ -26,6 +26,15 @@ function log_table_changes(table)
     end
 end
 
+function log_table_changes_external(table)
+    printh("", "bingo2.txt", true)
+    for value in all(table) do
+        for k, v in pairs(value) do      
+            printh(k..": "..v, "bingo2.txt")
+        end
+    end
+end
+
 function log_table(table)
     index = 0
     for k, v in pairs(table) do

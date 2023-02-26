@@ -59,3 +59,8 @@ function find_sub_table_with_smallest_value(table, value)
 
     return sub_table_with_smallest_value
 end
+
+function isEmpty(table)
+    if (#table > 0) return false
+    return true
+end
