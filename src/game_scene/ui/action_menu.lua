@@ -129,7 +129,7 @@ function attack_menu(unit, category)
             --attack method (may need some changes depending on buffs/debuffs)
 
             if(unit.attack > target_units[pointer].defence) then
-                damage = unit.attack - target_units[pointer].defence
+                damage = (unit.attack + unit.atkbuff) - target_units[pointer].defence
             else
                 damage = 0
             end
@@ -140,7 +140,7 @@ function attack_menu(unit, category)
             --magic method
 
             if(unit.magic > target_units[pointer].resistance) then
-                damage = unit.magic - target_units[pointer].resistance
+                damage = (unit.magic + unit.mgbuff) - target_units[pointer].resistance
             else
                 damage = 0
             end
@@ -148,7 +148,7 @@ function attack_menu(unit, category)
             target_units[pointer]:take_damage(damage)
         elseif category == "heal" then
             --heal method
-            target_units[pointer]:take_heal(unit.magic*3/4)
+            target_units[pointer]:take_heal((unit.magic + unit.mgbuff)*3/4)
         end
 
         selector.selected = nil

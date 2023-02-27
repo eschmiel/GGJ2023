@@ -29,6 +29,7 @@ function draw_game()
         --end
     --end
 
+
     selector:draw()
     selectedPosition:draw()
 
@@ -88,3 +89,5 @@ function check_win()
 
     return win
 end
+
+
