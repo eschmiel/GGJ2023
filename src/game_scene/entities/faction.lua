@@ -58,6 +58,8 @@ function generate_faction(set_type)
             unit.animation_manager:draw_animation(xPixelCoordinate, yPixelCoordinate)
             pal()
             palt(colorEnum.black, false)
+
+            unit:search_for_mod_tile(96, 0)
         end
     end
 

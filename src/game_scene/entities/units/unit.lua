@@ -16,6 +16,10 @@ function unit_constructor()
     unit.attack_range = 1
     unit.magic_range = 2
     unit.heal_range = 3
+    unit.atkbuff = 0
+    unit.mvbuff = 0
+    unit.mgbuff = 0
+    unit.hpbuff = 0
 
     function unit:move(coordinate_object, friendly)
         self.oldPositionX = self.positionX
@@ -81,6 +85,53 @@ function unit_constructor()
         end
 
         return dead
+
+    end
+
+    function unit:search_for_mod_tile(mapx, mapy)
+
+        c = self:get_coordinate_object()
+        sprite_id = mget(c.x + mapx, c.y + mapy)
+
+        
+
+        
+
+        --if sprite id matches magic
+        if sprite_id == 70 then
+            --buff magic
+            self.mgbuff = 3
+            self.mvbuff = 0
+            self.atkbuff = 0
+            self.hpbuff = 0
+        elseif sprite_id == 71 then
+        --else if phys
+            --buff phys
+            self.mgbuff = 0
+            self.mvbuff = 0
+            self.atkbuff = 3
+            self.hpbuff = 0
+        elseif sprite_id == 85 then
+        --else if hp
+            --buff hp
+            self.mgbuff = 0
+            self.mvbuff = 0
+            self.atkbuff = 0
+            self.hpbuff = 5
+        elseif sprite_id == 86 then
+        --else if movement
+            --buff movement
+            self.mgbuff = 0
+            self.mvbuff = 1
+            self.atkbuff = 0
+            self.phbuff = 0
+
+        else 
+            self.mgbuff = 0
+            self.mvbuff = 0
+            self.atkbuff = 0
+            self.phbuff = 0
+        end
 
     end
 
