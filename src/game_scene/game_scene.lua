@@ -23,13 +23,6 @@ function draw_game()
     player:draw_unit_animations()
     enemy:draw_unit_animations()
 
-    --for p in all(player.units) do
-        --if not p.active then 
-            --show_unit_is_unactive(p:get_coordinate_object())
-        --end
-    --end
-
-
     selector:draw()
     selectedPosition:draw()
 
