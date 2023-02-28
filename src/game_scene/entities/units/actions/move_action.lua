@@ -22,7 +22,9 @@ function prepareMoveAction(self, parameters)
         xDirection = xDirection,
         yDirection = yDirection,
         currentFrame = 1,
-        endFrame = 15
+        endFrame = 15,
+        friendly = parameters.friendly,
+        destination_coordinate_object = destination_coordinate_object
     }
 end
 
@@ -30,7 +32,7 @@ function resolveMoveAction(self)
     local moveX = self.action_state.xSpeed * self.action_state.xDirection
     local moveY = self.action_state.ySpeed * self.action_state.yDirection
 
-    log_table_external(self.action_state)
+    --log_table_external(self.action_state)
     self.action_state.currentPositionX += moveX
     self.action_state.currentPositionY += moveY
 
@@ -41,8 +43,16 @@ function resolveMoveAction(self)
 
     if (self.action_state.currentFrame >= self.action_state.endFrame) then
         --self.action_state = {}
+        self.loadedUnit.positionX = self.action_state.destination_coordinate_object.x
+        self.loadedUnit.positionY = self.action_state.destination_coordinate_object.y
         self.resolving = unitActionsEnum.NO_ACTION
         self.loadedUnit.animation_manager:set_animation_state(unitAnimationStateEnum.IDLE)
-        state = "select"
+        if self.action_state.friendly == true then 
+            state = "menu"
+            pointer = 1
+        else
+            self.loadedUnit.active = false
+            state = "enemy turn"
+        end
     end
 end

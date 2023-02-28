@@ -4,7 +4,6 @@ __lua__
 #include src/main.lua
 #include src/general_helpers/debugging_tools.lua
 #include src/game_scene/ui/selector.lua
-#include src/game_scene/ui/selected_position.lua
 #include src/general_helpers/helpers.lua
 #include src/game_scene/map_reference.lua
 #include src/game_scene/game_scene_helpers/movement_system.lua

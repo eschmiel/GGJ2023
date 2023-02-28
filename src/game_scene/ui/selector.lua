@@ -56,26 +56,27 @@ function selector:moveControls()
         elseif coordinate_table_contains_coordinates(tiles_in_range, {x = self.positionX, y = self.positionY}) then
             self.selected:move({x = self.positionX, y = self.positionY}, true)
             self.tiles_in_range = {}
-            self.selected = nil
         end
 
     end
     if controls[6] then
-        self.selected = nil
-        tiles_in_range = {}
+        if self.selected != nil then
+            self.selected = nil
+            tiles_in_range = {}
+        else
+            active_faction_manager = turn_manager:get_active_faction_manager()
+            active_faction_manager:disable_all_units()
+        end
     end
 end
 
 function selector:select()
-    indexCount = 1
     for unit in all(player.units) do
-        if same_coordinates({x = unit.positionX, y = unit.positionY }, {x = self.positionX, y = self.positionY}) then
-            print("bingo", 20, 20, colorEnum.yellow)
+        if same_coordinates({x = unit.positionX, y = unit.positionY }, {x = self.positionX, y = self.positionY})
+        and unit.active then
             self.selected = unit
-            self.index = indexCount
             break
         end
-        indexCount += 1
     end
 end
 

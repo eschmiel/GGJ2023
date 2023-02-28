@@ -19,7 +19,7 @@ function unit_constructor()
     unit.action_resolver = generateActionResolver(unit)
 
     function unit:move(coordinate_object, friendly)
-        self.action_resolver.beginAction(self.action_resolver, unitActionsEnum.MOVE, {destination_coordinate_object = coordinate_object})
+        self.action_resolver:beginAction(unitActionsEnum.MOVE, {destination_coordinate_object = coordinate_object, friendly = friendly})
     end
 
     function unit:get_coordinate_object()

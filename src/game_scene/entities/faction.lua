@@ -26,6 +26,9 @@ function generate_faction(set_type)
             new_unit.positionX = unit.positionX
             new_unit.positionY = unit.positionY
 
+            new_unit.oldPositionX = unit.positionX
+            new_unit.oldPositionY = unit.positionY
+
             add(self.units, new_unit)
         end
     end
@@ -59,7 +62,13 @@ function generate_faction(set_type)
 
             unit.animation_manager:draw_animation(xPixelCoordinate, yPixelCoordinate)
             pal()
-            palt(colorEnum.black, true)
+            palt(colorEnum.black)
+        end
+    end
+
+    function faction:disable_all_units()
+        for unit in all(self.units) do
+            unit.active = false
         end
     end
 

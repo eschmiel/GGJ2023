@@ -10,7 +10,7 @@ function setup_turn_manager(factions)
 
         new_turn = function(self)
             self.active_faction += 1
-        
+
             if self.active_faction > #self.factions then
                 self.active_faction = 1
             end
