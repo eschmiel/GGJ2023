@@ -26,12 +26,17 @@ function generate_faction(set_type)
             new_unit.positionX = unit.positionX
             new_unit.positionY = unit.positionY
 
+            new_unit.oldPositionX = unit.positionX
+            new_unit.oldPositionY = unit.positionY
+
             add(self.units, new_unit)
         end
     end
 
-    function faction:controls()
-        
+    function faction:resolve_unit_actions()
+        for unit in all(self.units) do
+            unit.action_resolver:resolveAction()
+        end
     end
 
     function faction:run_unit_animations()
@@ -57,9 +62,14 @@ function generate_faction(set_type)
 
             unit.animation_manager:draw_animation(xPixelCoordinate, yPixelCoordinate)
             pal()
-            palt(colorEnum.black, false)
-
+            palt(colorEnum.black)
             unit:search_for_mod_tile(96, 0)
+        end
+    end
+
+    function faction:disable_all_units()
+        for unit in all(self.units) do
+            unit.active = false
         end
     end
 

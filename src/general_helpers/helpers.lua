@@ -114,3 +114,8 @@ function distance_between_coordinates(coordinate_object_1, coordinate_object_2)
 
     return distance
 end
+
+function convertBooleanToNumber(booleanValue) 
+    if (booleanValue) return 1
+    return -1
+end

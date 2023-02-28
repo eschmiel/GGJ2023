@@ -6,17 +6,29 @@ function setup_faction_ai(faction_manager_to_run)
         faction_manager = faction_manager_to_run,
 
         take_turn = function(self)
-            for unit in all(self.faction_manager.units) do
-                self:move_action(unit)
+            if not self:areAnyUnitsResolving() then
+                for unit in all(self.faction_manager.units) do
+                    if unit.active != false then
+                        self:move_action(unit)
+                        break
+                    end
+                end
             end
         end,
         
+        areAnyUnitsResolving = function(self)
+            for unit in all(self.faction_manager.units) do
+                if unit.action_resolver.resolving != unitActionsEnum.NO_ACTION then
+                    return true
+                end
+            end
+            return false
+        end,
+
         move_action = function(self, unit)
             target_tile = self:find_tile_in_range_closest_to_nearest_player_unit(unit)
 
             unit:move(target_tile, false)
-
-            unit.active = false;
         end,
         
         -- could probably abstract find_nearest_player_unit and find_tile_in_range_closest_to_nearest_player_unit into the same function, driven by parameters
@@ -42,7 +54,6 @@ function setup_faction_ai(faction_manager_to_run)
             tiles_in_range = get_tiles_in_range(unit.positionX, unit.positionY, unit.movement, "movement")
             coordinates_of_nearest_player_unit = self:find_nearest_player_unit(unit)
             
-            log_table_external(coordinates_of_nearest_player_unit)
             tile_closest_to_nearest_player_unit = tiles_in_range[1]
             distance_for_tile_closest_to_player_unit = distance_between_coordinates(tile_closest_to_nearest_player_unit, coordinates_of_nearest_player_unit)
 

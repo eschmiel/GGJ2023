@@ -21,7 +21,6 @@ function draw_game()
     enemy:draw_unit_animations()
 
     selector:draw()
-    selectedPosition:draw()
 
     if state == "menu" then
     --draw the menu itself
@@ -38,16 +37,19 @@ function draw_game()
 end
 
 function update_game()
-    if state == "new turn start" then
-        turn_manager:new_turn_start_controller()
-    else
+    if state != "new turn start" then
         turn_manager:turn_logic()
     end
+
+    player:resolve_unit_actions()
+    enemy:resolve_unit_actions()
 
     player:run_unit_animations()
     enemy:run_unit_animations()
 
-      if state == "select" then
+    if state == "new turn start" then
+        turn_manager:new_turn_start_controller()
+    elseif state == "select" then
         selector:moveControls()
         selector:hover_logic()
     elseif state == "menu" then
@@ -77,5 +79,3 @@ function check_win()
 
     return win
 end
-
-

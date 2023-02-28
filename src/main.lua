@@ -1,5 +1,5 @@
 function _init()
-    --palt(colorEnum.black, true)
+    palt(colorEnum.black)
     music(1)
 
     _update = update_menu
