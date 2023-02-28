@@ -1,4 +1,5 @@
-.vs/
-*.vsidx
+vs/
+***.vsidx
 bingo.txt
-.gifs/
+gifs/**
+team pico-rva.png
