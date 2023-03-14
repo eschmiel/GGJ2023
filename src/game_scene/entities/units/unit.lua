@@ -40,15 +40,7 @@ function unit_constructor()
 
         self:hp_clamp()
     
-        if self:is_dead() then
-            if check_win() != nil then
-                if check_win() then
-                    --print("WIN!!!", 0, 80, colorEnum.red)
-                else
-                    --print("LOSE!!", 0, 80, colorEnum.red)
-                end
-            end
-        end
+        self:is_dead() 
     end
 
     function unit:take_heal(heal)
@@ -70,7 +62,7 @@ function unit_constructor()
         local dead = false
 
         if self.hp <= 0 then
-            del(enemy.units, self)
+            faction_manager:kill_unit(self)
 
             dead = true
         end

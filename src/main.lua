@@ -1,4 +1,5 @@
 function _init()
+    reset_log()
     palt(colorEnum.black)
     music(1)
 

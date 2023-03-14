@@ -33,11 +33,12 @@ function setup_faction_ai(faction_manager_to_run)
         
         -- could probably abstract find_nearest_player_unit and find_tile_in_range_closest_to_nearest_player_unit into the same function, driven by parameters
         find_nearest_player_unit = function(self, unit)
+            local player_units = faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.PLAYER)
             local enemy_unit_coordinates = unit:get_coordinate_object()
-            local coordinates_of_nearest_player_unit = player.units[1]:get_coordinate_object()
+            local coordinates_of_nearest_player_unit = player_units[1]:get_coordinate_object()
             local distance_from_nearest_player_unit = distance_between_coordinates(enemy_unit_coordinates, coordinates_of_nearest_player_unit)
            -- printh(distance_from_nearest_player_unit, "bingo.txt")
-            for player_unit in all(player.units) do
+            for player_unit in all(player_units) do
                 local unit_coordinates = player_unit:get_coordinate_object()
                 local distance = distance_between_coordinates(enemy_unit_coordinates, unit_coordinates)
 

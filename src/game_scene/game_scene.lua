@@ -1,24 +1,24 @@
 function init_game()
     music(0)
 
-    player = generate_faction("player")
-    enemy = generate_faction("enemy")
-    enemy:generate_units(levels[1].startingEnemyUnitData)
-    player:generate_units(levels[1].startingPlayerUnitData)
-    turn_manager = setup_turn_manager({player, enemy})
-    enemy_ai = setup_faction_ai(enemy)
+    factions_setup_table = {
+        { type = factionTypesEnum.PLAYER, unit_generation_table = levels[1].startingPlayerUnitData},
+        { type = factionTypesEnum.ENEMY, unit_generation_table = levels[1].startingEnemyUnitData}
+    }
+    faction_manager = generate_faction_manager(factions_setup_table)
+
+    turn_manager = setup_turn_manager(faction_manager)
+    enemy_ai = setup_faction_ai(faction_manager.factions[2])
     state = "select"
 
 end
 
 function draw_game()
     cls()
-    check_win()
     map(96,0)
 
     selector:draw_tiles_in_range()
-    player:draw_unit_animations()
-    enemy:draw_unit_animations()
+    faction_manager:draw_factions()
 
     selector:draw()
 
@@ -27,12 +27,11 @@ function draw_game()
         make_menu()
     elseif state == "new turn start" then
         turn_manager:draw_new_turn_start_notice()
-
     elseif state == "attack" or state == "magic" or state == "heal" then
         draw_target_selector(selector.selected, state)
     end
 
-    
+    check_win(faction_manager)
     
 end
 
@@ -41,11 +40,7 @@ function update_game()
         turn_manager:turn_logic()
     end
 
-    player:resolve_unit_actions()
-    enemy:resolve_unit_actions()
-
-    player:run_unit_animations()
-    enemy:run_unit_animations()
+    faction_manager:update_factions()
 
     if state == "new turn start" then
         turn_manager:new_turn_start_controller()
@@ -59,23 +54,4 @@ function update_game()
     elseif state == "attack" or state == "heal" or state == "magic" then
         attack_menu(selector.selected, state)
     end
-end
-
-function check_win()
-    local win = nil
-
-    if #player.units <= 0 then
-        win = false
-        --state = "lose"
-
-        print("LOSE")
-    end
-
-    if #enemy.units <= 0 then
-        win = true
-        --state = "win"
-        print("WIN")
-    end
-
-    return win
 end

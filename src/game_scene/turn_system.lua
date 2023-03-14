@@ -1,23 +1,25 @@
-function setup_turn_manager(factions)
+function setup_turn_manager(faction_manager)
     local turn_manager = {
-        active_faction = 1,
-        factions = factions,
+        current_turn = 1,
         showingTurnStartNotice = true,
+        number_of_factions = #faction_manager.factions,
 
-        get_active_faction_manager = function(self) 
-            return self.factions[self.active_faction] 
+        get_active_faction = function(self) 
+            return faction_manager.factions[self.current_turn] 
         end,
 
         new_turn = function(self)
-            self.active_faction += 1
-
-            if self.active_faction > #self.factions then
-                self.active_faction = 1
+            self.current_turn += 1
+            log_external("current turn", self.current_turn)
+            log_external("")
+            log_external("number of factions", number_of_factions)
+            if self.current_turn > self.number_of_factions then
+                self.current_turn = 1
             end
             
-            local active_faction_manager = self:get_active_faction_manager()
+            local active_faction = self:get_active_faction()
         
-            for unit in all(active_faction_manager.units) do
+            for unit in all(active_faction.units) do
                 unit.active = true
             end
         
@@ -25,9 +27,10 @@ function setup_turn_manager(factions)
         end,
 
         turn_logic = function(self)
-            local active_faction_manager = self:get_active_faction_manager()
+           --log_table_count_external(faction_manager.factions[current_turn].units)
+            local active_faction = self:get_active_faction()
 
-            for unit in all(active_faction_manager.units) do
+            for unit in all(active_faction.units) do
                 if (unit.active == true) return
             end
             
@@ -35,11 +38,11 @@ function setup_turn_manager(factions)
         end,
 
         draw_new_turn_start_notice = function(self)
-            local active_faction_manager = self:get_active_faction_manager()
+            local active_faction = self:get_active_faction()
             local turn_start_message = "USER PRIVILEGES GRANTED"
             local message_color = colorEnum.green
 
-            if (active_faction_manager.type != "player") then
+            if (active_faction.type != factionTypesEnum.PLAYER) then
                 turn_start_message = "USER PRIVILEGES REVOKED"
                 message_color = colorEnum.red
             end
@@ -50,16 +53,16 @@ function setup_turn_manager(factions)
         end,
 
         new_turn_start_controller = function(self)
-            local active_faction_manager = self:get_active_faction_manager()
+            local active_faction = self:get_active_faction()
             local controller = controllerListener()
 
             if controller[5] then
-                if active_faction_manager.type == "player" then
+                if active_faction.type == factionTypesEnum.PLAYER then
                     selector.selected = nil
 
                     state = "select"
                 end
-                if active_faction_manager.type == "enemy" then
+                if active_faction.type == factionTypesEnum.ENEMY then
                     state = "enemy turn"
                 end
             end

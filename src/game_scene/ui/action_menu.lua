@@ -85,13 +85,13 @@ function attack_menu(unit, category)
 
     if category == "attack" then
         range = unit.attack_range
-        u = enemy.units
+        u = faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY)
     elseif category == "magic" then
         range = unit.magic_range
-        u = enemy.units
+        u = faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY)
     elseif category == "heal" then
         range = unit.heal_range
-        u = player.units
+        u = faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY, true)
     end
 
     targets = get_tiles_in_range(unit.positionX, unit.positionY, range, category)

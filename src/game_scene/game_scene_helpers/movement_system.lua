@@ -3,6 +3,7 @@ function get_tiles_in_range(origin_x, origin_y, range, category)
     checked_tiles = { {x = origin_x, y = origin_y} } 
     tiles_in_range = {}
     distance_checked = 1
+    local unit_positions = faction_manager:get_all_unit_positions()
 
     if (category == "movement" or category == "heal") add(tiles_in_range, {x = origin_x, y = origin_y})
 
@@ -14,7 +15,7 @@ function get_tiles_in_range(origin_x, origin_y, range, category)
         new_tiles_to_check = {}
 
         for tile in all(tiles_to_check) do
-            neighboring_tiles_to_check = check_tile(tile, checked_tiles, tiles_in_range, category)
+            neighboring_tiles_to_check = check_tile(tile, checked_tiles, tiles_in_range, category, unit_positions)
             concatenate_tables_no_dupes(new_tiles_to_check, neighboring_tiles_to_check)
         end
 
@@ -26,22 +27,22 @@ function get_tiles_in_range(origin_x, origin_y, range, category)
 end
 
 
-function check_tile(tile_coordinates, checked_tiles, tiles_in_range, category)
+function check_tile(tile_coordinates, checked_tiles, tiles_in_range, category, unit_positions)
 
     add(checked_tiles, {x= tile_coordinates.x, y= tile_coordinates.y})
     
     if category == "movement" then
-        if is_tile_navigable(tile_coordinates) then
+        if is_tile_navigable(tile_coordinates, unit_positions) then
             add(tiles_in_range, {x= tile_coordinates.x, y= tile_coordinates.y})
         else
             return
         end
     elseif category == "attack" or category == "magic" then
-        if is_tile_unit(tile_coordinates, "enemy") then
+        if is_tile_unit(tile_coordinates, factionTypesEnum.ENEMY) then
             add(tiles_in_range, {x= tile_coordinates.x, y= tile_coordinates.y})
         end
     elseif category == "heal" then
-        if is_tile_unit(tile_coordinates, "player") then
+        if is_tile_unit(tile_coordinates, factionTypesEnum.PLAYER) then
             add(tiles_in_range, {x= tile_coordinates.x, y= tile_coordinates.y})
         end
     end
@@ -61,24 +62,22 @@ function check_tile(tile_coordinates, checked_tiles, tiles_in_range, category)
     return tiles_to_check
 end
 
-function is_tile_navigable(tile_coordinates)
-    tile_sprite = mget(tile_coordinates.x + 96, tile_coordinates.y)
+function is_tile_navigable(tile_coordinates, unit_positions)
+    local tile_sprite = mget(tile_coordinates.x + 96, tile_coordinates.y)
 
     if table_has_value(map_reference.wall_sprites, tile_sprite) then
+        return false
+    end
+
+    if coordinate_table_contains_coordinates(unit_positions, tile_coordinates) then
         return false
     end
 
     return true
 end
 
-function is_tile_unit(tile_coordinates, unit_type)
-    local unit_collections
-
-    if unit_type == "player" then
-        unit_collections = player.units
-    elseif unit_type == "enemy" then
-        unit_collections = enemy.units
-    end
+function is_tile_unit(tile_coordinates, faction_type)
+    local unit_collections = faction_manager:get_all_units_based_on_faction_type(faction_type)
 
     for unit in all(unit_collections) do
         if same_coordinates(tile_coordinates, unit:get_coordinate_object()) then
