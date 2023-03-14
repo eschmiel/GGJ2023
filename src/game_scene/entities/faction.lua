@@ -47,13 +47,13 @@ function generate_faction(set_type)
 
     function faction:draw_unit_animations()
         for unit in all(self.units) do
-            if self.type == "enemy" then
+            if self.type == factionTypesEnum.ENEMY then
                 if (unit.type == "huitz") pal(colorEnum.orange, colorEnum.pink)
                 if (unit.type == "quetz" or unit.type == "xipe") pal(colorEnum.green, colorEnum.pink)
                 if (unit.type == "tez") pal(colorEnum.grey, colorEnum.pink)
             end
 
-            if not unit.active and self.type == "player" then
+            if not unit.active and self.type == factionTypesEnum.PLAYER then
                 if (unit.type != nil) pal(colorEnum.black, colorEnum.greyPurple)
             end
 
@@ -75,3 +75,8 @@ function generate_faction(set_type)
 
     return faction
 end
+
+factionTypesEnum = {
+    PLAYER = "player",
+    ENEMY = "enemy"
+}

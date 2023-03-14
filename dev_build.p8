@@ -6,10 +6,7 @@ __lua__
 #include src/game_scene/ui/selector.lua
 #include src/general_helpers/helpers.lua
 #include src/game_scene/map_reference.lua
-#include src/game_scene/game_scene_helpers/movement_system.lua
 #include src/general_ui/dialogue.lua
-#include src/game_scene/entities/enemy.lua
-#include src/game_scene/entities/faction.lua
 #include src/game_scene/level.lua
 #include src/game_scene/game_scene.lua
 #include src/intro_scene.lua
@@ -18,16 +15,20 @@ __lua__
 #include src/game_scene/turn_system.lua
 #include src/services/animation_system/animator.lua
 #include src/services/animation_system/animation_manager.lua
+#include src/game_scene/entities/enemy.lua
+#include src/game_scene/entities/faction.lua
+#include src/game_scene/entities/faction_manager.lua
 #include src/game_scene/entities/units/huitz.lua
 #include src/game_scene/entities/units/quetz.lua
 #include src/game_scene/entities/units/tez.lua
 #include src/game_scene/entities/units/xipe.lua
 #include src/game_scene/entities/units/unit.lua
-#include src/game_scene/ui/unit_stat_block.lua
-
 #include src/game_scene/entities/units/action_resolver.lua
 #include src/game_scene/entities/units/helpers/unitHelpers.lua
 #include src/game_scene/entities/units/actions/move_action.lua
+#include src/game_scene/game_scene_helpers/movement_system.lua
+#include src/game_scene/game_scene_helpers/check_win.lua
+#include src/game_scene/ui/unit_stat_block.lua
 
 
 __gfx__

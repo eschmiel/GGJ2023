@@ -64,14 +64,14 @@ function selector:moveControls()
             self.selected = nil
             tiles_in_range = {}
         else
-            active_faction_manager = turn_manager:get_active_faction_manager()
-            active_faction_manager:disable_all_units()
+            active_faction = turn_manager:get_active_faction()
+            active_faction:disable_all_units()
         end
     end
 end
 
 function selector:select()
-    for unit in all(player.units) do
+    for unit in all(turn_manager:get_active_faction().units) do
         if same_coordinates({x = unit.positionX, y = unit.positionY }, {x = self.positionX, y = self.positionY})
         and unit.active then
             self.selected = unit
@@ -84,7 +84,7 @@ function selector:hover_logic()
     self.selectable = false
     self.hover_target = nil
     if not self.selected then
-        for unit in all(player.units) do
+        for unit in all(turn_manager:get_active_faction().units) do
             if self.positionX == unit.positionX and self.positionY == unit.positionY and unit.active then
                 self.selectable = true
                 tiles_in_range = get_tiles_in_range(self.positionX, self.positionY, unit.movement + unit.mvbuff , "movement")
@@ -94,7 +94,7 @@ function selector:hover_logic()
             tiles_in_range = {}
         end
     end
-    for unit in all(enemy.units) do
+    for unit in all(faction_manager.factions[2].units) do
         if self.positionX == unit.positionX and self.positionY == unit.positionY then
             self.selectable = true
             self.hover_target = unit
