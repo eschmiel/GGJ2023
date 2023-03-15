@@ -28,6 +28,7 @@ __lua__
 #include src/game_scene/entities/units/actions/move_action.lua
 #include src/game_scene/game_scene_helpers/movement_system.lua
 #include src/game_scene/game_scene_helpers/check_win.lua
+#include src/game_scene/game_scene_helpers/findUnitsInRange.lua
 #include src/game_scene/ui/unit_stat_block.lua
 
 

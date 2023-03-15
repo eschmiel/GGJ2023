@@ -52,7 +52,6 @@ function generate_faction_manager(faction_setup_table)
                 concatenate_tables(units, faction.units)
             end
         end
-        log_table_count_external(units)
         return units
     end
 
@@ -67,11 +66,8 @@ function generate_faction_manager(faction_setup_table)
 
     function faction_manager:get_all_unit_positions()
         local unit_positions = {}
-        log_external("beep")
         local all_units = self:get_units_from_all_factions()
-        log_external("bingo")
         for unit in all(all_units) do
-            log_external("in unit loop")
             add(unit_positions, unit:get_coordinate_object())
         end
 
