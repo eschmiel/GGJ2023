@@ -76,23 +76,7 @@ end
 
 
 function attack_menu(unit, category)
-    local range
-
-    --list of units within range
-    local possibleTargetUnitTable
-
-    if category == "attack" then
-        range = unit.attack_range
-        possibleTargetUnitTable= faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY)
-    elseif category == "magic" then
-        range = unit.magic_range
-        possibleTargetUnitTable= faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY)
-    elseif category == "heal" then
-        range = unit.heal_range
-        possibleTargetUnitTable= faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY, true)
-    end
-
-    local target_units = findUnitsInRange(unit:get_coordinate_object(), range, possibleTargetUnitTable)
+    local target_units = getTargetUnits(unit, category)
 
     controls = controllerListener()
 
@@ -153,32 +137,52 @@ function attack_menu(unit, category)
 end
 
 function draw_target_selector(unit, category)
-    local range
-
-    if category == "attack" then
-        range = unit.attack_range
-    elseif category == "magic" then
-        range = unit.magic_range
-    elseif category == "heal" then
-        range = unit.heal_range
-    end
-
-    targets = get_tiles_in_range(unit.positionX, unit.positionY, range, category)
+    targets = getTargetUnits(unit, category)
 
     if #targets == 0 then
         return
     end
 
-    print(targets[0], 0, 120, colorEnum.red)
-
-    --log_table_changes(targets)
-
     cursor(0, 0)
-    selected_target_position_x = targets[pointer].x
-    selected_target_position_y = targets[pointer].y
+    selected_target_position_x = targets[pointer].positionX
+    selected_target_position_y = targets[pointer].positionY
 
     selected_target_pixel_position_x = convertPositionToPixelCoordinate(selected_target_position_x)
     selected_target_pixel_position_y = convertPositionToPixelCoordinate(selected_target_position_y)
 
     rect(selected_target_pixel_position_x, selected_target_pixel_position_y, selected_target_pixel_position_x + 8, selected_target_pixel_position_y + 8, colorEnum.red)
+end
+
+function getTargetUnits(unit, category)
+    local range
+
+    --list of units within range
+    local possibleTargetUnitTable
+
+    if category == "attack" then
+        range = unit.attack_range
+        possibleTargetUnitTable= faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY)
+    elseif category == "magic" then
+        range = unit.magic_range
+        possibleTargetUnitTable= faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY)
+    elseif category == "heal" then
+        range = unit.heal_range
+        possibleTargetUnitTable= faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY, true)
+    end
+
+    local target_units = findUnitsInRange(unit:get_coordinate_object(), range, possibleTargetUnitTable)
+
+    return target_units
+end
+
+function attackTarget(unit, target)
+    --attack method (may need some changes depending on buffs/debuffs)
+
+    if(unit.attack > target.defence) then
+        damage = (unit.attack + unit.atkbuff) - target.defence
+    else
+        damage = 0
+    end
+
+    target:take_damage(damage)
 end
