@@ -87,7 +87,7 @@ function selector:hover_logic()
         for unit in all(turn_manager:get_active_faction().units) do
             if self.positionX == unit.positionX and self.positionY == unit.positionY and unit.active then
                 self.selectable = true
-                tiles_in_range = get_tiles_in_range(self.positionX, self.positionY, unit.movement + unit.mvbuff , "movement")
+                tiles_in_range = get_tiles_in_range(self.positionX, self.positionY, unit.movement + unit.mvbuff)
                 self.hover_target = unit
                 break
             end

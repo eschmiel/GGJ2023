@@ -52,7 +52,7 @@ function setup_faction_ai(faction_manager_to_run)
         end,
 
         find_tile_in_range_closest_to_nearest_player_unit = function(self, unit)
-            tiles_in_range = get_tiles_in_range(unit.positionX, unit.positionY, unit.movement, "movement")
+            tiles_in_range = get_tiles_in_range(unit.positionX, unit.positionY, unit.movement)
             coordinates_of_nearest_player_unit = self:find_nearest_player_unit(unit)
             
             tile_closest_to_nearest_player_unit = tiles_in_range[1]
