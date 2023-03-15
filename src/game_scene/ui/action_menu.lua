@@ -78,32 +78,21 @@ end
 function attack_menu(unit, category)
     local range
 
-    target_units = {}
-
     --list of units within range
-    local u
+    local possibleTargetUnitTable
 
     if category == "attack" then
         range = unit.attack_range
-        u = faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY)
+        possibleTargetUnitTable= faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY)
     elseif category == "magic" then
         range = unit.magic_range
-        u = faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY)
+        possibleTargetUnitTable= faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY)
     elseif category == "heal" then
         range = unit.heal_range
-        u = faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY, true)
+        possibleTargetUnitTable= faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.ENEMY, true)
     end
 
-    targets = get_tiles_in_range(unit.positionX, unit.positionY, range, category)
-    
-
-    for tile in all(targets) do
-        for un in all(u) do
-            if same_coordinates(tile, un:get_coordinate_object()) then
-                add(target_units, un)
-            end
-        end
-    end
+    local target_units = findUnitsInRange(unit:get_coordinate_object(), range, possibleTargetUnitTable)
 
     controls = controllerListener()
 
