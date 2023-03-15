@@ -77,6 +77,7 @@ end
 
 function attack_menu(unit, category)
     local target_units = getTargetUnits(unit, category)
+    local selectedTarget = target_units[pointer]
 
     controls = controllerListener()
 
@@ -103,29 +104,12 @@ function attack_menu(unit, category)
     elseif (controls[5]) then
         --affirm
         if category == "attack" then
-            --attack method (may need some changes depending on buffs/debuffs)
-
-            if(unit.attack > target_units[pointer].defence) then
-                damage = (unit.attack + unit.atkbuff) - target_units[pointer].defence
-            else
-                damage = 0
-            end
-
-            target_units[pointer]:take_damage(damage)
-
+            attackTarget(unit, selectedTarget)
         elseif category == "magic" then
-            --magic method
-
-            if(unit.magic > target_units[pointer].resistance) then
-                damage = (unit.magic + unit.mgbuff) - target_units[pointer].resistance
-            else
-                damage = 0
-            end
-
-            target_units[pointer]:take_damage(damage)
+            magicAttackTarget(unit, selectedTarget)
         elseif category == "heal" then
             --heal method
-            target_units[pointer]:take_heal((unit.magic + unit.mgbuff)*3/4)
+            selectedTarget:take_heal((unit.magic + unit.mgbuff)*3/4)
         end
 
         selector.selected = nil
@@ -180,6 +164,18 @@ function attackTarget(unit, target)
 
     if(unit.attack > target.defence) then
         damage = (unit.attack + unit.atkbuff) - target.defence
+    else
+        damage = 0
+    end
+
+    target:take_damage(damage)
+end
+
+function magicAttackTarget(unit, target)
+    --magic method
+
+    if(unit.magic > target.resistance) then
+        damage = (unit.magic + unit.mgbuff) - target.resistance
     else
         damage = 0
     end
