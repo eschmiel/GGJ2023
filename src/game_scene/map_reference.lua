@@ -13,3 +13,30 @@ end
 map_reference = {}
 
 map_reference.wall_sprites = get_wall_sprites()
+
+navigableTileSpriteIDs = {
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    82,
+    83,
+    84,
+    85,
+    86,
+    118,
+    123
+}
+
+function createListOfNavigableTiles() {
+    local navigableTiles = {}
+    for x=0, 15 do
+        for y=0, 15 do 
+            local tileSpriteID = mget(x, y)
+            if count(navigableTileSpriteIDs, tileSpriteID) > 0 then
+                add(navigableTiles, )
+
+}
+
