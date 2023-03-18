@@ -1,54 +1,34 @@
 function createPositionList()
-    local positionList = {
-        xTable = {}
-        yTable = {}
-    }
+    local positionList = {}
 
-    function positionList:getPositionCount()
-        if (#self.xTable == #self.yTable) return #self.xTable
-        return "xTable and yTable are out of sync"
+    function positionList:add(setX, setY) 
+        assert(type(setX) != 'number' and type(setY) != 'number', "Tried to set a non-number value on a coordinate for a positionList.")
+        assert(self:includesCoordinates(setX, setY), "Tried to add a position to a positionList that already has the position.")
+        local newPosition = {x=setX, y=setY}
+
+        add(self, newPosition)
     end
 
-    function positionList:add(coordinateObject)
-        local newX = coordinateObject.x
-        local newY = coordinateObject.y
-        add(self.xTable, newX)
-        add(self.yTable, newY)
+    function positionList:remove(removeX, removeY)
+        assert(type(removeX) != 'number' and type(removeY) != 'number', "Tried to remove a position from a positionList using a coordinate that is not a number")
+        assert(not self:includesCoordinates(setX, setY), "Tried to remove a position from a positionList that it does not contain.")
+        
+        local indexOfPositionToRemove = self:findIndexOfContainedPosition(removeX, removeY)
+
+        deli(self, indexOfPositionToRemove)
     end
 
-    function positionList:remove(coordinateObject)
-        local positionIndex = self:find(coordinateObject)
-
-        if positionIndex then
-            deli(self.xTable, positionIndex)
-            deli(self.yTable, positionIndex)
-            return true
+    function positionList:includesCoordinates(findX, findY)
+        for position in all(self) do
+            if (position.x == findX and position.y == findY) return true
         end
-        return false -- let the caller know the remove failed.
+        return false
     end
 
-    function positionList:find(coordinateObject)
-        local targetX = coordinateObject.x
-        local targetY = coordinateObject.y
-        local xTable = self.xTable
-        local yTable = self.yTable
-        local positionCount = self:getPositionCount()
-
-        for index=1, positionCount do
-            if xTable[index] == targetX and yTable[index] == targetY then
-                return index
-            end
-        end
-        return false -- let the caller know the find failed
-    end
-
-    function positionList:forEach(callback)
-        local positionCount = self:getPositionCount()
-
-        for index=1, positionCount do
-            local x = self.xTable[index]
-            local y = self.yTable[index]
-            callback(x, y)
+    function positionList:findIndexOfContainedPosition(findX, findY)
+        for index in #self do
+            local position = self[index]
+            if (position.x == findX and position.y == findY) return index
         end
     end
 
