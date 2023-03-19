@@ -17,12 +17,12 @@ function generate_animation_manager(set_state_animations)
     end
 
     function animation_manager:run_animation()
-        current_animation = self:get_current_animation()
+        local current_animation = self:get_current_animation()
         current_animation:run_animation()
     end
 
     function animation_manager:draw_animation(pixelX, pixelY)
-        current_animation = self:get_current_animation()
+        local current_animation = self:get_current_animation()
         current_animation:draw_animation(pixelX, pixelY)
     end
 

@@ -3,16 +3,16 @@ function prepareMoveAction(self, parameters)
 
     self.loadedUnit.animation_manager:set_animation_state(unitAnimationStateEnum.MOVE)
 
-    oldPosition = self.loadedUnit:get_coordinate_object()
+    local  oldPosition = self.loadedUnit:get_coordinate_object()
 
-    xPositionDifference = abs(destination_coordinate_object.x - oldPosition.x)
-    yPositionDifference = abs(destination_coordinate_object.y - oldPosition.y)
+    local xPositionDifference = abs(destination_coordinate_object.x - oldPosition.x)
+    local yPositionDifference = abs(destination_coordinate_object.y - oldPosition.y)
 
-    speedToCompleteXMovementIn1Second = xPositionDifference / 15
-    speedToCompleteYMovementIn1Second = yPositionDifference / 15
+    local speedToCompleteXMovementIn1Second = xPositionDifference / 15
+    local speedToCompleteYMovementIn1Second = yPositionDifference / 15
 
-    xDirection = convertBooleanToNumber(oldPosition.x < destination_coordinate_object.x)
-    yDirection = convertBooleanToNumber(oldPosition.y < destination_coordinate_object.y)
+    local xDirection = convertBooleanToNumber(oldPosition.x < destination_coordinate_object.x)
+    local yDirection = convertBooleanToNumber(oldPosition.y < destination_coordinate_object.y)
 
     self.action_state = {
         currentPositionX = oldPosition.x,
@@ -48,11 +48,11 @@ function resolveMoveAction(self)
         self.resolving = unitActionsEnum.NO_ACTION
         self.loadedUnit.animation_manager:set_animation_state(unitAnimationStateEnum.IDLE)
         if self.action_state.friendly == true then 
-            state = "menu"
+            game_scene_state.state = "menu"
             pointer = 1
         else
             self.loadedUnit.active = false
-            state = "enemy turn"
+            game_scene_state.state = "enemy turn"
         end
     end
 end

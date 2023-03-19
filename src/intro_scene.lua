@@ -1,9 +1,9 @@
-count=1
+intro_count=1
 function update_menu()
     if(btnp(4)) then
-        count += 1
+        intro_count += 1
     end
-    if (count==7) then
+    if (intro_count==7) then
     init_game()
     _update = update_game
     _draw = draw_game
@@ -14,9 +14,9 @@ end
 
 function draw_menu()
     cls()
-    if(count==1) then
+    if(intro_count==1) then
         print("press the z button to start")
-    elseif(count==2) then
+    elseif(intro_count==2) then
         print("04.20.2075",0,12, colorEnum.blue)
         print("technochtitlan, is mesoamericas",0,28, colorEnum.grey)
         print("biggest software firm.", 0, 36)
@@ -27,7 +27,7 @@ function draw_menu()
         print("this is special.",0,108)
        
 
-    elseif(count==3) then
+    elseif(intro_count==3) then
         x = 30
         print("the reward, while lucrative,", 0, x)
         print("wouldnt be anything compared",0,x+8)
@@ -35,7 +35,7 @@ function draw_menu()
         print("no one has ever cracked their", 0, x+32)
         print("home node.",0,x+40)
 
-    elseif(count==4) then
+    elseif(intro_count==4) then
         line = 8
         x= 30
         print("Ive go my best sprites loaded,",0,x)
@@ -43,9 +43,9 @@ function draw_menu()
         print("fy is scouring the net to see if",0,x+ line *3)
         print("there are any deets we can",0,x + line * 4)
         print("sniff out before load in.",0,x + line *5)
-    elseif(count==5) then
+    elseif(intro_count==5) then
             print(map(64,0))
-    elseif(count==6) then
+    elseif(intro_count==6) then
         init_game()
         _update = update_game
         _draw = draw_game

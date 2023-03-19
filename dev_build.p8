@@ -29,6 +29,10 @@ __lua__
 #include src/game_scene/game_scene_helpers/movement_system.lua
 #include src/game_scene/game_scene_helpers/check_win.lua
 #include src/game_scene/game_scene_helpers/findUnitsInRange.lua
+#include src/game_scene/game_scene_helpers/dijkstra.lua
+#include src/game_scene/game_scene_helpers/positionList/positionList.lua
+#include src/game_scene/game_scene_helpers/positionList/positionDistanceList.lua
+#include src/game_scene/game_scene_helpers/positionList/positionListHelpers.lua
 #include src/game_scene/ui/unit_stat_block.lua
 
 

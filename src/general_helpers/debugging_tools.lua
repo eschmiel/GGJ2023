@@ -45,7 +45,7 @@ function log_table(table)
 end
 
 function log_table_external(table)
-    printh("", "bingo.txt", true)
+    --printh("", "bingo.txt", true
     --printh(#table, "bingo.txt", false)
     for k, v in pairs(table) do
         printh(k..": "..v, "bingo.txt", false)
@@ -67,4 +67,14 @@ end
 function log_external(message, value)
     printh(message, "log.txt")
     printh(value, "log.txt")
+end
+
+function log_array_external(table)
+    printh("", "bingo.txt", true)
+    --printh(#table, "bingo.txt", false)
+    for value in all(table) do
+        log_table_external(value)
+        printh("", "bingo.txt")
+      --  index += 8
+    end
 end
