@@ -30,13 +30,15 @@ navigableTileSpriteIDs = {
     123
 }
 
-function createListOfNavigableTiles() {
-    local navigableTiles = {}
+function createListOfNavigablePositions() 
+    local navigablePositions = createPositionList()
     for x=0, 15 do
         for y=0, 15 do 
-            local tileSpriteID = mget(x, y)
+            local tileSpriteID = mget(x + 96, y)
             if count(navigableTileSpriteIDs, tileSpriteID) > 0 then
-                add(navigableTiles, )
-
-}
-
+                navigablePositions:add(x, y)
+            end
+        end
+    end
+    return navigablePositions 
+end
