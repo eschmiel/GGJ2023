@@ -57,8 +57,8 @@ function generate_faction(set_type)
                 if (unit.type != nil) pal(colorEnum.black, colorEnum.greyPurple)
             end
 
-            xPixelCoordinate = convertPositionToPixelCoordinate(unit.positionX)
-            yPixelCoordinate = convertPositionToPixelCoordinate(unit.positionY)
+            local xPixelCoordinate = convertPositionToPixelCoordinate(unit.positionX)
+            local yPixelCoordinate = convertPositionToPixelCoordinate(unit.positionY)
 
             unit.animation_manager:draw_animation(xPixelCoordinate, yPixelCoordinate)
             pal()

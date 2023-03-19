@@ -57,9 +57,9 @@ function generate_animator()
 
 
     function animator:draw_animation(pixelX, pixelY, w, h)
-        w = w or 1
-        h = h or 1
-        current_frame_sprite = self.loaded_animation[self.animation_frame].animation_frame_sprite
+        local w = w or 1
+        local h = h or 1
+        local current_frame_sprite = self.loaded_animation[self.animation_frame].animation_frame_sprite
         spr(current_frame_sprite, pixelX, pixelY, w, h)
     end
 

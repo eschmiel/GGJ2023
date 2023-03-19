@@ -27,7 +27,7 @@ function unit_constructor()
     end
 
     function unit:get_coordinate_object()
-        coordinate_object = {
+        local coordinate_object = {
             x = self.positionX,
             y = self.positionY
         }
@@ -74,7 +74,7 @@ function unit_constructor()
     function unit:search_for_mod_tile(mapx, mapy)
 
         c = self:get_coordinate_object()
-        sprite_id = mget(c.x + mapx, c.y + mapy)
+        local sprite_id = mget(c.x + mapx, c.y + mapy)
 
         --if sprite id matches magic
         if sprite_id == 70 then

@@ -4,21 +4,21 @@ function make_menu()
     --have an array of choices (str)
     choices = {"attack", "magic", "heal", "buff", "debuff", "wait", "cancel"}
 
-    menuStart = 0
-    menuEndX = 4
-    menuEndY = 7
-    rectEndX = convertPositionToPixelCoordinate(menuEndX)
-    rectEndY = convertPositionToPixelCoordinate(menuEndY)
+    local menuStart = 0
+    local menuEndX = 4
+    local menuEndY = 7
+    local rectEndX = convertPositionToPixelCoordinate(menuEndX)
+    local rectEndY = convertPositionToPixelCoordinate(menuEndY)
     --build a box for the menu itself
     rectfill(0, 0, rectEndX, rectEndY, colorEnum.black)
     draw_snake_box(0, 0, menuEndX, menuEndY)
 
-    i = 1
-    menu_length = 1
+    local i = 1
+     menu_length = 1
     --print out the array inside the box
     --print the current choice with a different color (white)
     for c in all(choices) do
-        menu_button_color = colorEnum.grey
+        local menu_button_color = colorEnum.grey
         if i == pointer then
             menu_button_color = colorEnum.white
         end
@@ -43,27 +43,27 @@ function menu_controls(unit)
     elseif controls[5] then
         --play action
         if choices[pointer] == "cancel" then
-            state = "select"
+            game_scene_state.state = "select"
             unit.positionX = unit.oldPositionX
             unit.positionY = unit.oldPositionY
             selector.selected = nil
         elseif choices[pointer] == "wait" then
-            state = "select"
+            game_scene_state.state = "select"
             unit.active = false
             selector.selected = nil
         elseif choices[pointer] == "attack" then
-            state = "attack"
+            game_scene_state.state = "attack"
             pointer = 1
         elseif choices[pointer] == "magic" then
-            state = "magic"
+            game_scene_state.state = "magic"
             pointer = 1
         elseif choices[pointer] == "heal" then
-            state = "heal"
+            game_scene_state.state = "heal"
             pointer = 1
         end
             
     elseif controls[6] then
-        state = "select"
+        game_scene_state.state = "select"
         unit.positionX = unit.oldPositionX
         unit.positionY = unit.oldPositionY
     end
@@ -79,11 +79,11 @@ function attack_menu(unit, category)
     local target_units = getTargetUnits(unit, category)
     local selectedTarget = target_units[pointer]
 
-    controls = controllerListener()
+    local controls = controllerListener()
 
     if (controls[6]) then
         --cancel
-        state = "menu"
+        game_scene_state.state = "menu"
         pointer = 1
     end
 
@@ -114,25 +114,25 @@ function attack_menu(unit, category)
 
         selector.selected = nil
         unit.active = false
-        state = "select"
+        game_scene_state.state = "select"
     end
 
     
 end
 
 function draw_target_selector(unit, category)
-    targets = getTargetUnits(unit, category)
+    local targets = getTargetUnits(unit, category)
 
     if #targets == 0 then
         return
     end
 
     cursor(0, 0)
-    selected_target_position_x = targets[pointer].positionX
-    selected_target_position_y = targets[pointer].positionY
+    local selected_target_position_x = targets[pointer].positionX
+    local selected_target_position_y = targets[pointer].positionY
 
-    selected_target_pixel_position_x = convertPositionToPixelCoordinate(selected_target_position_x)
-    selected_target_pixel_position_y = convertPositionToPixelCoordinate(selected_target_position_y)
+    local selected_target_pixel_position_x = convertPositionToPixelCoordinate(selected_target_position_x)
+    local selected_target_pixel_position_y = convertPositionToPixelCoordinate(selected_target_position_y)
 
     rect(selected_target_pixel_position_x, selected_target_pixel_position_y, selected_target_pixel_position_x + 8, selected_target_pixel_position_y + 8, colorEnum.red)
 end

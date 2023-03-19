@@ -10,9 +10,6 @@ function setup_turn_manager(faction_manager)
 
         new_turn = function(self)
             self.current_turn += 1
-            log_external("current turn", self.current_turn)
-            log_external("")
-            log_external("number of factions", number_of_factions)
             if self.current_turn > self.number_of_factions then
                 self.current_turn = 1
             end
@@ -23,7 +20,7 @@ function setup_turn_manager(faction_manager)
                 unit.active = true
             end
         
-            state = "new turn start"
+            game_scene_state.state = "new turn start"
         end,
 
         turn_logic = function(self)
@@ -60,10 +57,10 @@ function setup_turn_manager(faction_manager)
                 if active_faction.type == factionTypesEnum.PLAYER then
                     selector.selected = nil
 
-                    state = "select"
+                    game_scene_state.state = "select"
                 end
                 if active_faction.type == factionTypesEnum.ENEMY then
-                    state = "enemy turn"
+                    game_scene_state.state = "enemy turn"
                 end
             end
         end

@@ -14,7 +14,7 @@ function generateActionResolver(unit)
         end,
 
         beginAction = function(self, action, parameters)
-            state = "resolving action"
+            game_scene_state.state = "resolving action"
             self.resolving = action
             self.prepareResolver[action](self, parameters)
         end
