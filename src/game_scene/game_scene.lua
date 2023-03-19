@@ -20,18 +20,18 @@ function init_game()
     -- checkedPositionList = createPositionList()
 end
 
-function drawDijkstra()
-    for position in all(checkedPositionList) do
-        pixelX = convertPositionToPixelCoordinate(position.x)
-        pixelY = convertPositionToPixelCoordinate(position.y)
-        rectfill(pixelX, pixelY, pixelX + 8, pixelY + 8, colorEnum.green)
-    end
-    for position in all(path) do
-        pixelX = convertPositionToPixelCoordinate(position.x)
-        pixelY = convertPositionToPixelCoordinate(position.y)
-        rectfill(pixelX, pixelY, pixelX + 8, pixelY + 8, colorEnum.yellow)
-    end
-end
+-- function drawDijkstra()
+--     for position in all(checkedPositionList) do
+--         pixelX = convertPositionToPixelCoordinate(position.x)
+--         pixelY = convertPositionToPixelCoordinate(position.y)
+--         rectfill(pixelX, pixelY, pixelX + 8, pixelY + 8, colorEnum.green)
+--     end
+--     for position in all(path) do
+--         pixelX = convertPositionToPixelCoordinate(position.x)
+--         pixelY = convertPositionToPixelCoordinate(position.y)
+--         rectfill(pixelX, pixelY, pixelX + 8, pixelY + 8, colorEnum.yellow)
+--     end
+-- end
 
 function draw_game()
     local faction_manager = game_scene_state.faction_manager
