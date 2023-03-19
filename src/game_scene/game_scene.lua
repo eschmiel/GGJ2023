@@ -15,9 +15,9 @@ function init_game()
         state = "select"
     }
 
-    dijkstra = createDijkstra()
-    path = createPositionList()
-    checkedPositionList = createPositionList()
+    -- dijkstra = createDijkstra()
+    -- path = createPositionList()
+    -- checkedPositionList = createPositionList()
 end
 
 function drawDijkstra()
@@ -83,9 +83,9 @@ function update_game()
     elseif state == "attack" or state == "heal" or state == "magic" then
         attack_menu(selector.selected, state)
     end
-    if (btnp(5)) then
-        algoData = dijkstra:run(2,2, selector.positionX, selector.positionY)
-        path = algoData.path
-        checkedPositionList = algoData.checkedPositionList
-    end
+    -- if (btnp(5)) then
+    --     algoData = dijkstra:run(2,2, selector.positionX, selector.positionY)
+    --     path = algoData.path
+    --     checkedPositionList = algoData.checkedPositionList
+    -- end
 end
