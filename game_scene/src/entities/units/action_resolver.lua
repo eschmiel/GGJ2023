@@ -24,5 +24,6 @@ function generateActionResolver(unit)
     
     actionResolver.resolvers[unitActionsEnum.NO_ACTION] = function() end
     actionResolver.resolvers[unitActionsEnum.MOVE] = resolveMoveAction
+    print("bingo")
     return actionResolver
 end

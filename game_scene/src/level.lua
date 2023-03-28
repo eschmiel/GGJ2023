@@ -32,23 +32,23 @@ levels[1] = {
     startingPlayerUnitData = {
         {
             type = "huitz",
-            positionX = 2,
-            positionY = 2
+            positionX = 10,
+            positionY = 6
         },
         {
             type = "tez",
-            positionX = 3,
-            positionY = 2
+            positionX = 10,
+            positionY = 5
         },
         {
             type = "quetz",
-            positionX = 7,
-            positionY = 2
+            positionX = 9,
+            positionY = 6
         },
         {
             type = "xipe",
-            positionX = 5,
-            positionY = 2
+            positionX = 11,
+            positionY = 6
         }
     }
 }

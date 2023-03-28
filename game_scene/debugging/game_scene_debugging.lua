@@ -1,4 +1,4 @@
-- dijkstra = createDijkstra()
+-- dijkstra = createDijkstra()
     -- path = createPositionList()
     -- checkedPositionList = createPositionList()
 

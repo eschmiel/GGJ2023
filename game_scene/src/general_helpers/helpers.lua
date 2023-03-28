@@ -103,3 +103,10 @@ function convertBooleanToNumber(booleanValue)
     if (booleanValue) return 1
     return -1
 end
+
+function same_coordinates(coordinate_object_1, coordinate_object_2)
+    if coordinate_object_1.x == coordinate_object_2.x and coordinate_object_1.y == coordinate_object_2.y then
+        return true
+    end
+    return false
+end

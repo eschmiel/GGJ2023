@@ -14,6 +14,8 @@ function _init()
         enemy_ai = setup_faction_ai(faction_manager.factions[2]),
         state = "select"
     }
+
+    dijkstra = createDijkstra()
 end
 
 function _draw()
@@ -26,7 +28,7 @@ function _draw()
     selector:draw_tiles_in_range()
     faction_manager:draw_factions()
 
-    selector:draw()
+    if (not (game_scene_state.state == "resolving action")) selector:draw()
 
     if state == "menu" then
     --draw the menu itself

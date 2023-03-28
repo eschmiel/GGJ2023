@@ -32,13 +32,6 @@ function table_has_key(table, check_key)
     return false
 end
 
-function same_coordinates(coordinate_object_1, coordinate_object_2)
-    if coordinate_object_1.x == coordinate_object_2.x and coordinate_object_1.y == coordinate_object_2.y then
-        return true
-    end
-    return false
-end
-
 function coordinate_table_contains_coordinates(coordinate_table, coordinate_object)
     for table_object in all(coordinate_table) do
         if (same_coordinates(coordinate_object, table_object)) return true
