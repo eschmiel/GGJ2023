@@ -6,6 +6,18 @@ function createDijkstra()
         unvisitedPositionList = {}
     }
 
+    function dijkstra:getPath(startX, startY, endX, endY)
+        self:run(startX, startY, endX, endY)
+
+        return self:createPath(endX, endY)
+    end
+    
+    function dijkstra:getDistanceBetweenPositions(startX, startY, endX, endY)
+        self:run(startX, startY, endX, endY)
+
+        return self.positionDistanceList:getPositionDistance(endX, endY)
+    end
+    
     function dijkstra:run(startX, startY, endX, endY)
         self.unvisitedPositionList = copyPositionList(self.navigablePositionList)
 
@@ -24,11 +36,6 @@ function createDijkstra()
             self:calculateDistanceOfNeighboringPositions(unvisitedPositionWithLeastDistance.x, unvisitedPositionWithLeastDistance.y)
             unvisitedPositionList:remove(unvisitedPositionWithLeastDistance.x, unvisitedPositionWithLeastDistance.y)
         end
-
-        local path = self:createPath(endX, endY)
-        local checkedPositionList = self:createCheckedPositionList()
-
-        return {path = path, checkedPositionList = checkedPositionList}
     end
 
     function dijkstra:findPositionWithLeastDistance(positionList)

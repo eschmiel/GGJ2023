@@ -28,6 +28,10 @@ function setup_faction_ai(faction_manager_to_run)
             unit:move(target_tile, false)
         end,
         
+        move_towards_nearest_player_unit = function(self, unit)
+
+        end,
+
         -- could probably abstract find_nearest_player_unit and find_tile_in_range_closest_to_nearest_player_unit into the same function, driven by parameters
         find_nearest_player_unit = function(self, unit)
             local player_units = faction_manager:get_all_units_based_on_faction_type(factionTypesEnum.PLAYER)

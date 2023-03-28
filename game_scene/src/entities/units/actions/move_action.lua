@@ -1,8 +1,7 @@
 function prepareMoveAction(self, parameters)
     local currentPosition = self.loadedUnit:get_coordinate_object()
     local destination_coordinate_object = parameters.destination_coordinate_object
-    local results = dijkstra:run(currentPosition.x, currentPosition.y, destination_coordinate_object.x, destination_coordinate_object.y)
-    local path = results.path
+    local path = dijkstra:getPath(currentPosition.x, currentPosition.y, destination_coordinate_object.x, destination_coordinate_object.y)
     local targetPosition = #path - 1  -- The first postion in path is the destination. The last position in path is the starting point
 
     self.loadedUnit.animation_manager:set_animation_state(unitAnimationStateEnum.MOVE)
